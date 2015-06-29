@@ -8,7 +8,7 @@ before_install:
 - rm -rf ~/.gvm
 - curl -s get.gvmtool.net > ~/install_gvm.sh
 - chmod 775 ~/install_gvm.sh
-- ~/install_gvm.sh
+- "~/install_gvm.sh"
 - echo "gvm_auto_answer=true" > ~/.gvm/etc/config
 - source ~/.gvm/bin/gvm-init.sh
 - GRAILS_VERSION=`grep '^app\.grails\.version=' ./application.properties | sed -e
@@ -22,5 +22,5 @@ script: grails clean && grails refresh-dependencies --non-interactive && grails 
   war --non-interactive && grails prod maven-deploy --repository=$MAVEN_REPO --non-interactive
 env:
   global:
-  - secure: G53K7r0RJpOGVt+HK5VXTyuuMyHZKICNW+94fMSMGQA1SduTbQBG/2MPbI41XpcShAzs6U96xd/6AcEE81hdF0yMysOKHwzlp2B5XSPdQrDZpgU7K7tXh6w5oYkexNokC6+zHFFEyj1HYIPotkhrQkBPg+xt9U1y0uXjlBxjVZM=
-  - secure: NObxPjzVvNf/xCVO4eDUAWvJJlRDYv+XSPBz14FdsH9R2Cq/xjrEgzwlTTOPEBY2ymU/rHkEGskqHg+UeIbZZtCcpq53ABSen6BQ5seVsPXndoCULZ9vsWpbD2wa6iVu9AaODFzhnHk8G5R97gqVl5EO7Tb8HqoWFRPziL8EaUE=
+  - secure: pnA8D9qgi8GeBoWogw3N4VSz1uJZaFhnDbji2iHCkFX5nUkfrKqtu1cbEoqvpDXV+9iFEEBhv2UwJm5ibMxqJAQ/sk8R/gPb3OqYqA45mnw3ol4pStTVrGpiDUaIP0rftieSK8utYhXUO0sOcYRtifG9Qbv7bOEOeHD9l/aWQ4tj2buQA9Icos/GgON7p4ZOWAAgQJY/g7/7QRECkBhoWhVvplsdVuktJFUSF9k6DL2YvcS6tMSQf9aXOJKGNE2ju9rdHsLtnoR+vMA/gyhtx5KcIY7AX2qAg+V/cbuOcNxiEUlS6YytcIA4cAyIA2mX6s6vChUWiyscY//rjLrSM75FXMf+rUq5t38/wfjZJsRq6lMpU1ALJ1W0T3qNvWF0OhLl2+HuV//hSq23C3naoNcf9s1zK8uYxgsTxaV7zRBw3UUAjTDCwjUl2bgauiDbEhVeq0ERqRrmAQwB0XBUsx3E28oFyO+nax4wTT5+ovj0mag8boXaPXPfnstFk7TaTEIzunVDRoyDDNmdJpJlCp0ehv3ZfWvnuoYuyGCqq2e5W/0GwE+UR1fMBgUMs/dknnS7+6DwIIgSkAYsYYOwbRGsjGpbWB0rnf94rPkhQFELYskSD3qFu50hNjpCSM8aI2633kKyhakrFLjEW8JQldHlLm2fHAI0O5U18kvWwL4=
+  - secure: YPVE6CaR+lU89x9xQTL2K1rTqMrJl+AuvpI3fzOCL+kmvnwRVHTQwS7Xpyk7qYxiah3+DeJ+p47k5kyfWnLwjJMvULF47uTRshilvvP9Dz9lswyMD6P5Zr0WjNYXIxAPagjNODCM38/RV/llwRhY+sPiUxV+34piB7gmD5wgCUiMore/aI7UE2OXc0kI0Vq9pXt0zl8VMkfWYCDOiJnlFdnedyzpYRTvguAJfma8Liz0bqD0ZX9pfmT/uefsW0LNqeFVZKaOlvIrTuA/zpBfZ9MqhEPfNgfSULGqZ8aAbY1rjGqSOKL0jQwgbnEFe1SMAN6TzQ+XpYO1wQmmMVEoH3S9yUCmk9sWFeJx3p9hFf8VyQRafSeIOO5U/S9H5XAtzgfM9WJ7ES2HpC1a0ogGf8QDjlr9aC6YpDJdnSDhIqKXXA+036N4JOp041fmFBbDA0N4C5trtN+gIFkuZ0QK3/sD5Hm4ExMQiV0WRAMyxcdaNW5mkPlmPjYAY58D4260WF5R2bFDtNyNTeG1je1z2GDKta4bxmbksyXt8ckawsW1NRb+oNtvTIz8UvPPIRdLVpLMJdeTz52epZsG6Oubfv+a1H15KJZMwMTwnlQsuFCE4Cy7rLL1q6qCjfwh2QdNvLsPJX7XvGklTSZa3g7D3JVZC6hLx3J/Ov8QuZhGdJQ=
