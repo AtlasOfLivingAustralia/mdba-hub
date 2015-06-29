@@ -30,9 +30,9 @@ println "default_config = ${default_config}"
 /******************************************************************************\
  *  SKINNING
 \******************************************************************************/
-skin.layout = 'generic'
-skin.orgNameLong = "Generic Data Portal"
-skin.orgNameShort = "Occurrences"
+skin.layout = 'mdba-hub'
+skin.orgNameLong = "Murray-Darling Basin Authority"
+skin.orgNameShort = "MDBA"
 // whether crumb trail should include a home link that is external to this webabpp - ala.baseUrl is used if true
 skin.includeBaseUrl = true
 skin.headerUrl = "classpath:resources/generic-header.jsp" // can be external URL
@@ -42,6 +42,9 @@ chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
 map.overlay.name = ""
+
+// set temporary data hub context  **** remove before compiling to production ***
+biocache.queryContext="data_hub_uid:dh10"
 
 /******************************************************************************\
  *  MISC

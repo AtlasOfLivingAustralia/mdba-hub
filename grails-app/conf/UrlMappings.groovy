@@ -6,7 +6,12 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-        //"/"(view:"/index")
+        "/"(view:"/index")
+        "/index"(view:"/index")
+        "/about"(view:"/about")
+        "/contact"(view:"/contact")
+        "/access"(view:"/access")
+        "/disclaim"(view:"/disclaim")
         "500"(view:'/error')
 	}
 }

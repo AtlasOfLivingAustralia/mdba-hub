@@ -1,0 +1,50 @@
+
+#main-content #customiseFacetsButton > .dropdown-menu,
+#main-content #resultsReturned .dropdown-menu {
+    background-color: #fff;
+}
+a {
+    color: #00A18F;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #007777;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    background-color: #009080;
+    background-image: linear-gradient(to bottom, #00A18F,#009080);
+    border-color: #009080 #009080 #00A18F;#009080
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+    color: #ffffff;
+    background-color: #009080;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background-color: #007777 \9;
+}
+
+.navbar-inverse .navbar-inner {
+    background-color: #1b1b1b;
+    background-image: linear-gradient(to bottom, #00A18F, #009080);
+    background-repeat: repeat-x;
+    border-color: #009080;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav > li > a {
+    color: #dfdfdf;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
