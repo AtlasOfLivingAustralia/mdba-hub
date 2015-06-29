@@ -11,7 +11,7 @@
 
 <body>
 <!-- <div id="headingBar" class="heading-bar"> --->
-<g:img dir="/images" file="kingfisher-strip-logo.png" alt="kingfisher" />
+<g:img dir="/images" file="kingfisher-strip-logo.jpg" alt="kingfisher" />
 <!--</div> -->
 
 <div style="padding-left: 14px; padding-right: 14px">
