@@ -37,7 +37,7 @@ skin.orgNameShort = "MDBA"
 skin.includeBaseUrl = true
 skin.headerUrl = "classpath:resources/generic-header.jsp" // can be external URL
 skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
-skin.fluidLayout = true // true or false
+skin.fluidLayout = false // true or false
 chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
 map.overlay.url = ""
