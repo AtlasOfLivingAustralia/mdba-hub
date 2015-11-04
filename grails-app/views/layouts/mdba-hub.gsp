@@ -11,7 +11,7 @@
     <title><g:layoutTitle /></title>
     <r:require modules="mdba, fontawesome" />
     %{--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic,300,300italic' rel='stylesheet' type='text/css'>--}%
-    <link href='http://livedata.mdba.gov.au/sites/all/themes/watersource_foundation/fonts/mdba-fonts/Common_fonts.css' rel='stylesheet' type='text/css'>
+    %{--<link href='http://livedata.mdba.gov.au/sites/all/themes/watersource_foundation/fonts/mdba-fonts/Common_fonts.css' rel='stylesheet' type='text/css'>--}%
     <style type="text/css">
 
     </style>
@@ -78,8 +78,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="${g.createLink(uri: '/')}"><g:img dir="/images" file="MDBA-logo.png" alt="MDBA logo" class="headerLogo"/></a>
-            <a class="brand" href="http://ala.org.au/" id="alaLink">
+            <a class="brand" href="http://www.mdba.gov.au/" title="MDBA home page"><g:img dir="/images" file="MDBA-logo.png" alt="MDBA logo" class="headerLogo"/></a>
+            <a class="brand" href="http://ala.org.au/" id="alaLink" title="ALA home page">
                 <g:img dir="/images" file="ALA-logo-BW-124x109.png" alt="Powered by ALA logo" class="headerLogo"/>
                 <div id="alaHeadingText"><div id="poweredBy">powered by</div><div id="alaBy">Atlas of Living Australia</div></div>
             </a>

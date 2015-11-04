@@ -7,6 +7,7 @@ modules = {
 
     mdba {
         dependsOn 'bootstrap2', 'hubCore'
+        resource url: [dir:'css', file:'Common_fonts.css']
         resource url: [dir:'css', file:'mdba-styles.css']
     }
 

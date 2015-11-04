@@ -71,17 +71,19 @@ a:focus {
 
 .brand .headerLogo {
     height: 36px;
+    padding-top: 10px;
     margin-top: -3px;
 }
 
 #alaLink .headerLogo {
-    margin-top: -16px;
+    margin-top: -27px;
 }
 
 #alaHeadingText {
     display: inline-block;
     margin-left: 5px;
-    margin-top: -8px;
+    margin-top: 4px;
+    line-height: 1.1em;
 }
 
 #poweredBy {
@@ -120,16 +122,26 @@ body .navbar {
 .navbar-inverse .nav > li > a {
     color: #efefef;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    padding: 0;
 }
 
 .navbar-inner ul.nav {
+    margin-top: 13px;
     font-size: 18px;
-    padding-top: 4px;
+    /*padding-top: 4px;*/
+    height: 18px;
+}
+
+.navbar-inner ul li:not(:last-child) {
+    border-right:2px solid white;
+    margin-right:10px;
+    padding-right:10px;
 }
 
 .navbar .brand {
     font-size: 18px;
     font-weight: normal;
+    margin: 0 10px 0 10px;
 }
 
 .brand .headerLogo {
@@ -152,7 +164,11 @@ body .navbar {
 }
 
 #footer .nav {
-    margin: 10px 0 20px 0;
+    margin: 18px 0 20px 0;
+    /*margin-top: 13px;*/
+    font-size: 18px;
+    /*padding-top: 4px;*/
+    height: 18px;
 }
 
 #footer ul.nav > li {
@@ -161,7 +177,7 @@ body .navbar {
 
 #footer .navbar-inverse .nav > li > a {
     float: none;
-    padding: 10px 15px 10px 5px;
+    padding: 0;
     color: #efefef;
     text-decoration: none;
     /*text-shadow: 0 1px 0 #ffffff;*/
@@ -170,6 +186,12 @@ body .navbar {
 #footer .navbar-inverse .nav > li > a:hover {
     /*background-color: #efefef;*/
     text-decoration: underline;
+}
+
+#footer .navbar-inverse ul li:not(:last-child) {
+    border-right:2px solid white;
+    margin-right:10px;
+    padding-right:10px;
 }
 
 #footer #smlinks  {
