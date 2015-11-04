@@ -10,12 +10,15 @@
 </head>
 
 <body>
-<!-- <div id="headingBar" class="heading-bar"> --->
-<g:img dir="/images" file="kingfisher-strip-logo.jpg" alt="kingfisher" />
-<!--</div> -->
-
-<div style="padding-left: 14px; padding-right: 14px">
-    <h2 style="color:#00A18F">About MDBA</h2>
+<content tag="page-header">
+    <div id="homeBanner">
+        <div class="${fluidLayout?'container-fluid':'container'}">
+            <g:img dir="/images" file="MDBA_AG_crest_mono_reverse_stacked.png" alt="kingfisher" id="bannerImg"/>
+        </div>
+    </div>
+</content>
+<div class="staticContent">
+    <h2>About MDBA</h2>
     <p>The Murray–Darling Basin Authority (MDBA) is part of the Environment portfolio, and reports to the Minister for the
     Environment.</p>
     <p>The MDBA was established under the federal Water Act 2007 as an independent, expertise based statutory agency; our
@@ -28,7 +31,7 @@
     strategic relations with other Australian Government, Basin state government and local agencies; industry groups;
     scientists and research organisations.</p>
 
-    <h4 style="color:#00A18F">What we do</h4>
+    <h4>What we do</h4>
     <p>The Water Act requires the MDBA to undertake a number of functions:</p>
     <ul>
         <li>construct and operate River Murray assets such as dams and weirs</li>

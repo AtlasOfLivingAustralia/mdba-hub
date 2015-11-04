@@ -7,18 +7,22 @@
 </head>
 
 <body>
-<!-- <div id="headingBar" class="heading-bar"> --->
-<g:img dir="/images" file="kingfisher-strip-logo.jpg" alt="kingfisher" />
-<!--</div> -->
-
-<div style="padding-left: 14px; padding-right: 14px">
-    <h2 style="color:#00A18F">Online accessibility statement</h2>
+<content tag="page-header">
+    <div id="homeBanner">
+        <div class="${fluidLayout?'container-fluid':'container'}">
+            <g:img dir="/images" file="MDBA_AG_crest_mono_reverse_stacked.png" alt="kingfisher" id="bannerImg"/>
+        </div>
+    </div>
+</content>
+<div class="staticContent">
+    <h2>Online accessibility statement</h2>
     <p>Australian Government departments and Agencies are obliged by the <i>Disability Discrimination Act 1992</i>> to
     ensure that online information and services are accessible by people with disabilities. They are also required to
     make online resources accessible to people with technical constraints, such as older browsers and lower speed
     Internet connections.</p>
-    <p>This website aims to conform to Level AA of the <a class="external" href="http://www.w3.org/TR/WCAG20/" target="_blank">Web Content Accessibility Guidelines version 2 (WCAG 2.0)</a>
-        , developed by the <a class="external" href="http://www.w3.org/WAI/" target="_blank">Web Accessibility Initiative of the World Wide Web Consortium (W3C)</a>.</p>
+    <p>This website aims to conform to Level AA of the <a class="external" href="http://www.w3.org/TR/WCAG20/" target="_blank">Web
+    Content Accessibility Guidelines version 2 (WCAG 2.0)</a>, developed by the
+    <a class="external" href="http://www.w3.org/WAI/" target="_blank">Web Accessibility Initiative of the World Wide Web Consortium (W3C)</a>.</p>
     <p>This web site has been developed to display adequately on all commonly used browsers and to work effectively with
     accessibility hardware and/or software. Although it is designed for a 1024&nbsp;x&nbsp;768 screen resolution, this
     site will scale to both higher and lower screen resolutions.</p>

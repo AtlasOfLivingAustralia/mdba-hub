@@ -12,8 +12,10 @@
 </head>
 <body>
 <content tag="page-header">
-    <div id="headingBar">
-        <g:img dir="/images" file="MDBA_AG_crest_mono_reverse_stacked.png" alt="kingfisher" class="bannerImg"/>
+    <div id="homeBanner">
+        <div class="${fluidLayout?'container-fluid':'container'}">
+            <g:img dir="/images" file="MDBA_AG_crest_mono_reverse_stacked.png" alt="kingfisher" id="bannerImg"/>
+        </div>
     </div>
 </content>
 
@@ -26,10 +28,12 @@
 
 <div class="${fluidLayout?'row-fluid':'row'}">
     <div class="span12" id="quickSearchBox">
-        <div class="input-append pull-right">
-            <input class="input-large span2" placeholder="Quick search" name="taxa" type="text">
-            <button class="btn btn-primary" type="button">Go!</button>
-        </div>
+        <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
+            <div class="input-append pull-right">
+                <input class="input-large span2" placeholder="Quick search" name="taxa" type="text">
+                <button class="btn btn-primary" type="submit">Go!</button>
+            </div>
+        </form>
     </div><!-- end .span12 -->
 </div><!-- end .row-fluid -->
 <div class="${fluidLayout?'row-fluid':'row'}">

@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <alatag:addApplicationMetaTags />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    %{--<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">--}%
+    <link rel="shortcut icon" type="image/x-icon" href="${request.contextPath}/images/favicons.ico/favicon.ico">
 
     <title><g:layoutTitle /></title>
     <r:require modules="mdba, fontawesome" />
@@ -78,7 +78,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="http://ala.org.au/"> <g:img dir="/images" file="ALA-logo-BW-124x109.png" alt="Powered by ALA logo" class="headerLogo"/> Powered by the Atlas of Living Australia</a>
+            <a class="brand" href="${g.createLink(uri: '/')}"><g:img dir="/images" file="MDBA-logo.png" alt="MDBA logo" class="headerLogo"/></a>
+            <a class="brand" href="http://ala.org.au/" id="alaLink">
+                <g:img dir="/images" file="ALA-logo-BW-124x109.png" alt="Powered by ALA logo" class="headerLogo"/>
+                <div id="alaHeadingText"><div id="poweredBy">powered by</div><div id="alaBy">Atlas of Living Australia</div></div>
+            </a>
             <div class="pull-right">
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
@@ -99,14 +103,14 @@
     </div><!--/.navbar-inner -->
 </div><!--/.navbar -->
 
-<g:pageProperty name="page.page-header"/>
+<g:pageProperty name="page.page-header"/> <%-- allows special content to be inserted --%>
 
 <div class="${fluidLayout?'container-fluid':'container'}" id="main-content">
     <g:layoutBody />
 </div><!--/.container-->
 
 <div id="footer">
-   <div class="container">
+   <div class="${fluidLayout?'container-fluid':'container'}">
        <div class="row  navbar-inverse">
            <div class="span6">
                <ul class="nav">
