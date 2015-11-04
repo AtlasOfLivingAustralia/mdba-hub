@@ -40,8 +40,12 @@ skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
 skin.fluidLayout = false // true or false
 chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
-map.overlay.url = ""
-map.overlay.name = ""
+map.overlay.url = "http://spatial.ala.org.au/geoserver/ALA/wms"
+map.overlay.name = "Murray-Darling Basin"
+map.overlay.layer = "ALA:Objects"
+map.overlay.viewparams = "s:5769190"
+map.overlay.opacity = "0.5"
+map.defaultFacetMapColourBy = "grid"
 
 // set temporary data hub context  **** remove before compiling to production ***
 biocache.queryContext="data_hub_uid:dh10"
