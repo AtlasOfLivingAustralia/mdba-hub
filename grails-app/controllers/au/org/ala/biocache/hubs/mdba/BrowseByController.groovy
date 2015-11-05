@@ -23,7 +23,9 @@ import org.codehaus.groovy.grails.web.json.JSONArray
 class BrowseByController {
     def restService
 
-    def index() { }
+    def index() {
+        redirect(action: 'species')
+    }
 
     def species() {
         //Map speciesGroupsForHub = restService.getFacetNames("species_group")

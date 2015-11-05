@@ -14,21 +14,22 @@
 package au.org.ala.biocache.hubs.mdba
 
 import grails.plugin.cache.Cacheable
+import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONElement
 import org.codehaus.groovy.grails.web.json.JSONObject
 
 class RestService {
     def grailsApplication, facetsCacheService, webServicesService
 
-    //@Cacheable('longTermCache')
+    @Cacheable('longTermCache')
     Map getFacetNames(String facet) {
         Map facetNames = facetsCacheService.getFacetNamesFor(facet)
         log.debug "facetNames = ${facetNames}"
         facetNames
     }
 
-    //@Cacheable('longTermCache')
-    def getSpeciesGroups(Integer minLevel, Integer maxLevel) {
+    @Cacheable('longTermCache')
+    List getSpeciesGroups(Integer minLevel, Integer maxLevel) {
         def groupsWanted = []
         def max = 100
         def url = "${grailsApplication.config.biocache.baseUrl}/explore/groups?q=${grailsApplication.config.biocache.queryContext}&pageSize=${max}"
@@ -44,13 +45,12 @@ class RestService {
         groupsWanted
     }
 
-    //@Cacheable('longTermCache')
-    def getSpeciesForGroup(String group) {
+    @Cacheable('longTermCache')
+    JSONArray getSpeciesForGroup(String group) {
         def max = 100
         def dataHubid = grailsApplication.config.biocache.queryContext
         def url = "${grailsApplication.config.biocache.baseUrl}/explore/group/${group}?q=${dataHubid}&pageSize=${max}"
         log.debug "url = ${url}"
-        JSONElement breakDown = webServicesService.getJsonElements(url)
-        breakDown
+        webServicesService.getJsonElements(url)
     }
 }
