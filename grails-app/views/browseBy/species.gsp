@@ -71,6 +71,6 @@
         </g:each>
     </div> <!-- .span9 -->
 </div>
-<div style="margin: 250px 0;"></div>
+<div style="margin: 200px 0;">&nbsp;</div>
 </body>
 </html>
