@@ -1,14 +1,18 @@
-<%@ page import="au.org.ala.biocache.hubs.FacetsName; org.apache.commons.lang.StringUtils" contentType="text/html;charset=UTF-8" %>
-<%@ page import="org.springframework.web.servlet.support.RequestContextUtils; au.org.ala.biocache.hubs.FacetsName; org.apache.commons.lang.StringUtils" contentType="text/html;charset=UTF-8" %>
-<g:set var="hubDisplayName" value="${grailsApplication.config.skin.orgNameLong}"/>
-<g:set var="biocacheServiceUrl" value="${grailsApplication.config.biocache.baseUrl}"/>
-<g:set var="serverName" value="${grailsApplication.config.serverName?:grailsApplication.config.biocache.baseUrl}"/>
 <g:set var="fluidLayout" value="${grailsApplication.config.skin.fluidLayout?.toBoolean()}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="layout" content="${grailsApplication.config.skin.layout}"/>
     <title>${grailsApplication.config.skin.orgNameLong}</title>
+    <r:script>
+        $(document).ready(function(){
+            $(".homePageNav button").click(function(e) {
+                e.preventDefault();
+                var url = $(this).data("href");
+                window.location = url;
+            });
+        });
+    </r:script>
 </head>
 <body>
 <content tag="page-header">
@@ -37,7 +41,7 @@
     </div><!-- end .span12 -->
 </div><!-- end .row-fluid -->
 <div class="${fluidLayout?'row-fluid':'row'}">
-    <g:render template="/homeActionButton" model="[label:'Species', browseBy: true, href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Species', browseBy: true, href: g.createLink(controller:'browseBy', action:'species')]"/>
     <g:render template="/homeActionButton" model="[label:'Catchment', browseBy: true, href:'']"/>
     <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:'']"/>
 </div><!-- end .row-fluid -->

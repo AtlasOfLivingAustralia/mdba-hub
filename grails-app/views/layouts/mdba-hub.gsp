@@ -67,7 +67,7 @@
     <r:layoutResources/>
     <g:layoutHead />
 </head>
-<body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}">
+<body class="${pageProperty(name:'body.class')?:'nav-collections'}" id="${pageProperty(name:'body.id')}" onload="${pageProperty(name:'body.onload')}"  data-offset="${pageProperty(name:'body.data-offset')}" data-target="${pageProperty(name:'body.data-target')}" data-spy="${pageProperty(name:'body.data-spy')}">
 <g:set var="fluidLayout" value="${grailsApplication.config.skin.fluidLayout?.toBoolean()}"/>
 <div class="navbar navbar-inverse navbar-static-top">
     <div class="navbar-inner contain-to-grid">
@@ -78,7 +78,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="http://www.mdba.gov.au/" title="MDBA home page"><g:img dir="/images" file="MDBA-logo.png" alt="MDBA logo" class="headerLogo"/></a>
+            <a class="brand" href="http://www.mdba.gov.au/" id="mdbaLink" title="MDBA home page">
+                <g:img dir="/images" file="MDBA-logo.png" alt="MDBA logo" class="headerLogo"/>
+                <div id="mdbaHeadingText">MDBA</div>
+            </a>
             <a class="brand" href="http://ala.org.au/" id="alaLink" title="ALA home page">
                 <g:img dir="/images" file="ALA-logo-BW-124x109.png" alt="Powered by ALA logo" class="headerLogo"/>
                 <div id="alaHeadingText"><div id="poweredBy">powered by</div><div id="alaBy">Atlas of Living Australia</div></div>

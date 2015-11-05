@@ -223,7 +223,7 @@ a.colour-by-legend-toggle {
             </td>
             <td>
                 <label for="outlineDots"><g:message code="map.maplayercontrols.tr01td04.label" default="Outline"/>:</label>
-                <input type="checkbox" name="outlineDots" checked="checked" value="true" class="layerControls" id="outlineDots">
+                <input type="checkbox" name="outlineDots" value="true" class="layerControls" id="outlineDots">
             </td>
         </tr>
     </table>
