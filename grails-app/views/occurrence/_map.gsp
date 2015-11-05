@@ -189,7 +189,7 @@ a.colour-by-legend-toggle {
                 <div class="layerControls">
                     <select name="colourBySelect" id="colourBySelect" onchange="changeFacetColours();return true;">
                         <option value=""><g:message code="map.maplayercontrols.tr01td01.option01" default="Points - default colour"/></option>
-                        <option value="grid" ${(defaultColourBy == 'grid')?'selected=\"selected\"':''}><g:message code="map.maplayercontrols.tr01td01.option02" default="Record density grid"/></option>
+                        <option value="grid" ${(defaultColourBy == 'grid' && sr?.totalRecords > 2000)?'selected=\"selected\"':''}><g:message code="map.maplayercontrols.tr01td01.option02" default="Record density grid"/></option>
                         <option value="gridVariable"><g:message code="map.maplayercontrols.tr01td01.option03" default="Grid (variable precision)"/></option>
                         <option disabled role="separator">————————————</option>
                         <g:each var="facetResult" in="${facets}">
@@ -210,7 +210,7 @@ a.colour-by-legend-toggle {
             <td>
                 <label for="sizeslider"><g:message code="map.maplayercontrols.tr01td02.label" default="Size"/>:</label>
                 <div class="layerControls">
-                    <span class="slider-val" id="sizeslider-val">3</span>
+                    <span class="slider-val" id="sizeslider-val">${(sr?.totalRecords > 2000) ? '3' : '4'}</span>
                 </div>
                 <div id="sizeslider" style="width:75px;"></div>
             </td>
