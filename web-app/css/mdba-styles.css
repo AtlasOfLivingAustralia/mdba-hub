@@ -134,8 +134,8 @@ body .navbar {
 
 .navbar-inner ul li:not(:last-child) {
     border-right:2px solid white;
-    margin-right:10px;
-    padding-right:10px;
+    margin-right:14px;
+    padding-right:14px;
 }
 
 .navbar .brand {
@@ -190,8 +190,8 @@ body .navbar {
 
 #footer .navbar-inverse ul li:not(:last-child) {
     border-right:2px solid white;
-    margin-right:10px;
-    padding-right:10px;
+    margin-right:14px;
+    padding-right:14px;
 }
 
 #footer #smlinks  {
