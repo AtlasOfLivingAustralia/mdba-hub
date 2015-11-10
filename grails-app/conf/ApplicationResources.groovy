@@ -7,7 +7,16 @@ modules = {
 
     mdba {
         dependsOn 'bootstrap2', 'hubCore'
+        resource url: [dir:'css', file:'Common_fonts.css']
         resource url: [dir:'css', file:'mdba-styles.css']
+    }
+
+    fontawesome {
+        resource url:[dir:'css/font-awesome-4.1.0/css', file:'font-awesome.min.css', plugin:'biocache-hubs'], attrs: [ media: 'all' ]
+    }
+
+    browseBy {
+        resource url: [dir:'css', file:'browseBy.css']
     }
 
 }

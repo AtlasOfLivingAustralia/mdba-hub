@@ -7,11 +7,15 @@
 </head>
 
 <body>
-<!-- <div id="headingBar" class="heading-bar"> --->
-<g:img dir="/images" file="kingfisher-strip-logo.jpg" alt="kingfisher" />
-<!--</div> -->
-<div style="padding-left: 14px; padding-right: 14px">
-    <h2 style="color:#00A18F">Disclaimer</h2>
+<content tag="page-header">
+    <div id="homeBanner">
+        <div class="${fluidLayout?'container-fluid':'container'}">
+            <g:img dir="/images" file="MDBA_AG_crest_mono_reverse_stacked.png" alt="kingfisher" id="bannerImg"/>
+        </div>
+    </div>
+</content>
+<div class="staticContent">
+    <h2>Disclaimer</h2>
     <p>The Murray–Darling Basin Authority is responsible for the development and ongoing operation of the Murray–Darling
     Basin Authority web site.</p>
     <p>The Murray–Darling Basin Authority web site is presented by the Commonwealth for the purpose of disseminating
@@ -28,7 +32,7 @@
     <p>The material on this web site may include the views or recommendations of third parties, which do not necessarily
     reflect the views of the Commonwealth, or indicate its commitment to a particular course of action.</p>
 
-    <h4 style="color:#00A18F">Security of the Murray–Darling Basin Authority web site</h4>
+    <h4>Security of the Murray–Darling Basin Authority web site</h4>
     <p>The Murray–Darling Basin Authority applies a range of security controls to protect its web site from unauthorised
     access. However, users should be aware that the World Wide Web is an insecure public network that gives rise to a
     potential risk that a user's transactions are being viewed, intercepted or modified by third parties or that files
@@ -37,7 +41,7 @@
     or data occurring in connection with or relating to this web site or its use. Users are encouraged to take appropriate
     and adequate precautions to ensure that whatever is selected from this site is free of viruses or other contamination
     that may interfere with or damage the user's computer system, software or data.</p>
-    <h4 style="color:#00A18F">Links to external web sites</h4>
+    <h4>Links to external web sites</h4>
     <p>This web site contains links to other web sites that are external to the Murray–Darling Basin Authority. The
     Murray–Darling Basin Authority takes reasonable care in linking web sites but has no direct control over the content
     of the linked web sites, the changes that may occur to the content on those web sites, or the security arrangements
