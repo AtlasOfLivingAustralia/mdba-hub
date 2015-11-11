@@ -80,10 +80,13 @@ grails.mime.types = [ // the first one is the default format
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
+grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/font/*']
+grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**', '/bootstrap/**', '/font/**']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
+
+//grails.resources.rewrite.css = false
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
@@ -134,7 +137,7 @@ environments {
 //        serverName='http://dev.ala.org.au:8080'
 //        security.cas.appServerName = serverName
 //        security.cas.contextPath = "/${appName}"
-        grails.resources.debug = true // cache & resources plugins
+        //grails.resources.debug = true // cache & resources plugins
     }
     test {
 //        grails.serverURL = 'http://biocache-test.ala.org.au'
