@@ -51,6 +51,7 @@ map.densityCountThreshold = 100000
 // set temporary data hub context  **** remove before compiling to production ***
 biocache.queryContext="data_hub_uid:dh10"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
+//biocache.queryContext="data_resource_uid:dr2244"
 
 /******************************************************************************\
  *  MISC
