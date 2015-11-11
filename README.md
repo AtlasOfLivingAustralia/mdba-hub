@@ -1,5 +1,4 @@
-### generic-hub   [![Build Status](https://travis-ci.org/AtlasOfLivingAustralia/mdba-hub.svg?branch=master)](https://travis-ci.org/AtlasOfLivingAustralia/mdba-hub/builds)
+### mdba-hub   [![Build Status](https://travis-ci.org/AtlasOfLivingAustralia/mdba-hub.svg?branch=master)](https://travis-ci.org/AtlasOfLivingAustralia/mdba-hub/builds)
 
-# MDBA Portal based on generic-hub
+# Murray-Darling Basin Authority (MDBA) Data Portal
 
-MDBA Portal
