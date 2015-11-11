@@ -43,11 +43,11 @@
 <div class="${fluidLayout?'row-fluid':'row'}">
     <g:render template="/homeActionButton" model="[label:'Species', browseBy: true, href: g.createLink(controller:'browseBy', action:'species')]"/>
     <g:render template="/homeActionButton" model="[label:'Catchment', browseBy: true, href:'']"/>
-    <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:'http://collections.ala.org.au/public/show/in94']"/>
 </div><!-- end .row-fluid -->
 <div class="${fluidLayout?'row-fluid':'row'}">
-    <g:render template="/homeActionButton" model="[label:'Indigenous Language groups',href:'']"/>
-    <g:render template="/homeActionButton" model="[label:'Basin Champions',href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Traditional Owner Groups',href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Basin Champions',href:'http://www.mdba.gov.au/what-we-do/education/basin-champions']"/>
     <g:render template="/homeActionButton" model="[label:'Resources',href:'']"/>
 </div><!-- end .row-fluid -->
 <div class="indexBuffer"></div>
