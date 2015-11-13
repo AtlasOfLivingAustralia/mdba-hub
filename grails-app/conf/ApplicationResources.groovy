@@ -16,7 +16,13 @@ modules = {
 //    }
 
     browseBy {
+        dependsOn 'lazyload'
         resource url: [dir:'css', file:'browseBy.css']
+    }
+
+    lazyload {
+        dependsOn 'jquery'
+        resource url: [dir:'js', file:'jquery.lazyload.js']
     }
 
     bootstrapSwitch {
