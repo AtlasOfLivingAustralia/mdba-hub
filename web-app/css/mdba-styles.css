@@ -59,6 +59,28 @@ a:focus {
     background-color: #007777 \9;
 }
 
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success {
+    background-color: #009080;
+    background-image: linear-gradient(to bottom, #00A18F,#009080);
+    border-color: #009080 #009080 #00A18F #009080;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+    background-color: #f2684c;
+    background-image: -moz-linear-gradient(top, #f37257, #f15a3b);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f37257), to(#f15a3b));
+    background-image: -webkit-linear-gradient(top, #f37257, #f15a3b);
+    background-image: -o-linear-gradient(top, #f37257, #f15a3b);
+    background-image: linear-gradient(to bottom, #f37257, #f15a3b);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff37257', endColorstr='#fff15a3b', GradientType=0);
+    border-color: #f15a3b #f15a3b #d0300f;
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+
 /* Navbar */
 
 .nav {

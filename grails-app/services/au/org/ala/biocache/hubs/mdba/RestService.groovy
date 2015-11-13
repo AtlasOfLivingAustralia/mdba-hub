@@ -17,6 +17,7 @@ import grails.plugin.cache.Cacheable
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONElement
 import org.codehaus.groovy.grails.web.json.JSONObject
+import org.springframework.web.util.UriUtils
 
 class RestService {
     def grailsApplication, facetsCacheService, webServicesService
@@ -32,7 +33,8 @@ class RestService {
     List getSpeciesGroups(Integer minLevel, Integer maxLevel) {
         def groupsWanted = []
         def max = 100
-        def url = "${grailsApplication.config.biocache.baseUrl}/explore/groups?q=${grailsApplication.config.biocache.queryContext}&pageSize=${max}"
+        def dataHubid = UriUtils.encodeQueryParam(grailsApplication.config.biocache.queryContext?:"", "UTF-8")
+        def url = "${grailsApplication.config.biocache.baseUrl}/explore/groups?q=${dataHubid}&pageSize=${max}"
         def groups = webServicesService.getJsonElements(url)
 
         groups.each {
@@ -47,8 +49,8 @@ class RestService {
 
     @Cacheable('longTermCache')
     JSONArray getSpeciesForGroup(String group) {
-        def max = 100
-        def dataHubid = grailsApplication.config.biocache.queryContext
+        def max = 20
+        def dataHubid = UriUtils.encodeQueryParam(grailsApplication.config.biocache.queryContext?:"", "UTF-8")
         def url = "${grailsApplication.config.biocache.baseUrl}/explore/group/${group}?q=${dataHubid}&pageSize=${max}"
         log.debug "url = ${url}"
         webServicesService.getJsonElements(url)

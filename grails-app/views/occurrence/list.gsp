@@ -22,6 +22,8 @@
 <g:set var="startPageTime" value="${System.currentTimeMillis()}"/>
 <g:set var="queryDisplay" value="${sr?.queryTitle?:searchRequestParams?.displayString?:''}"/>
 <g:set var="searchQuery" value="${grailsApplication.config.skin.useAlaBie ? 'taxa' : 'q'}"/>
+<g:set var="mdbaRegionCode" value="${grailsApplication.config.mdba.mdbaRegionCode}"/>
+<g:set var="mdbaDataCode" value="${grailsApplication.config.mdba.mdbaDataCode}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,7 @@
     <title><g:message code="list.title" default="Search"/>: ${sr?.queryTitle?.replaceAll("<(.|\n)*?>", '')} | <alatag:message code="search.heading.list" default="Search results"/> | ${grailsApplication.config.skin.orgNameLong}</title>
     %{--<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>--}%
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <r:require modules="search, leaflet, slider, qtip, nanoscroller, amplify, moment, mapCommon"/>
+    <r:require modules="search, leaflet, slider, qtip, nanoscroller, amplify, moment, mapCommon, bootstrapSwitch"/>
     <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
         <r:require module="bieAutocomplete"/>
     </g:if>
@@ -64,6 +66,27 @@
 
         google.load('maps','3.5',{ other_params: "sensor=false" });
         google.load("visualization", "1", {packages:["corechart"]});
+
+        $(document).ready(function() {
+
+            // MDBA vs All records toggle
+            $("[name='mdba-toggle']").bootstrapSwitch({
+                size: "small",
+                onText: "All",
+                onColor: "primary",
+                offText: "MDBA",
+                offColor: "success",
+                onSwitchChange: function(event, state) {
+                    console.log("switch toggled", state);
+                    if (!state) {
+                        // MDBA visible
+                        reloadWithParam('fq', 'data_resource_uid:${mdbaDataCode?:""}');
+                    } else {
+                        removeFilter($('a').data('facet','data_resource_uid'));
+                    }
+                }
+            });
+        });
     </script>
 </head>
 
@@ -110,6 +133,13 @@
             <g:else>
                 <p><g:message code="list.03.p03" default="No records found for"/> <span class="queryDisplay">${raw(queryDisplay)?:params.q}</span></p>
             </g:else>
+            %{-- Include toggle for all/mdba records for when no results are found after clicking this toggle --}%
+            <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
+            <g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.findAll { it.contains(mdbaDataCode) } }">
+                <div class="activeFilters">
+                    Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(mdbaDataCode) }) ? '':'checked'}/>
+                </div>
+            </g:if>
         </div>
     </g:elseif>
     <g:else>
@@ -166,7 +196,7 @@
             <div class="span9">
                 <a name="map" class="jumpTo"></a><a name="list" class="jumpTo"></a>
                 <g:if test="${false && flash.message}"><%-- OFF for now --%>
-                    <div class="alert alert-info" style="margin-left: -30px;">
+                    <div class="alert alert-info" style="margin-left: -30px;">xx
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         ${flash.message}
                     </div>
@@ -175,9 +205,16 @@
                         <span id="returnedText"><strong><g:formatNumber number="${sr.totalRecords}" format="#,###,###"/></strong> <g:message code="list.resultsretuened.span.returnedtext" default="results for"/></span>
                         <span class="queryDisplay"><strong>${raw(queryDisplay)}</strong></span>&nbsp;&nbsp;
                     %{--<g:set var="hasFq" value="${false}"/>--}%
+                    <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
+                    <g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.find { it.contains(mdbaDataCode) } }">
+                        <div class="activeFilters">
+                            Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(mdbaDataCode) }) ? '':'checked'}/>
+                        </div>
+                        <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_resource_uid') } -->
+                    </g:if>
                     <g:if test="${sr.activeFacetMap?.size() > 0 || params.wkt || params.radius}">
                         <div class="activeFilters">
-                            <b><alatag:message code="search.filters.heading" default="Current filters"/></b>:&nbsp;
+                            <b><alatag:message code="search.filters.heading" default="Selected filters"/></b>:&nbsp;
                             <g:each var="fq" in="${sr.activeFacetMap}">
                                 <g:if test="${fq.key}">
                                     <g:set var="hasFq" value="${true}"/>

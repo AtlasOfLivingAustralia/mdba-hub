@@ -46,12 +46,14 @@ map.overlay.layer = "ALA:Objects"
 map.overlay.viewparams = "s:5769190"
 map.overlay.opacity = "0.5"
 map.defaultFacetMapColourBy = "grid"
-map.densityCountThreshold = 100000
+map.densityCountThreshold = 10000
 
 // set temporary data hub context  **** remove before compiling to production ***
 biocache.queryContext="data_hub_uid:dh10"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
-//biocache.queryContext="data_resource_uid:dr2244"
+//biocache.queryContext="data_resource_uid:dr2244
+mdba.mdbaRegionCode = "cl1059"
+mdba.mdbaDataCode = "dr2244"
 
 /******************************************************************************\
  *  MISC
@@ -80,13 +82,12 @@ grails.mime.types = [ // the first one is the default format
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/font/*']
-grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**', '/bootstrap/**', '/font/**']
+grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/fonts/*']
+grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**', '/bootstrap/**', '/fonts/**']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
-
-//grails.resources.rewrite.css = false
+//grails.resources.rewrite.css = false // fixes font errors due to css processor trying to process fonts
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.

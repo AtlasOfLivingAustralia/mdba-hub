@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${request.contextPath}/images/favicons.ico/favicon.ico">
 
     <title><g:layoutTitle /></title>
-    <r:require modules="mdba, fontawesome" />
+    <r:require modules="mdba" />
     %{--<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic,300,300italic' rel='stylesheet' type='text/css'>--}%
     %{--<link href='http://livedata.mdba.gov.au/sites/all/themes/watersource_foundation/fonts/mdba-fonts/Common_fonts.css' rel='stylesheet' type='text/css'>--}%
     <style type="text/css">
