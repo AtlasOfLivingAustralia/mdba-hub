@@ -84,7 +84,8 @@
             </a>
             <a class="brand" href="http://ala.org.au/" id="alaLink" title="ALA home page">
                 <g:img dir="/images" file="ALA-logo-BW-124x109.png" alt="Powered by ALA logo" class="headerLogo"/>
-                <div id="alaHeadingText"><div id="poweredBy">powered by</div><div id="alaBy">Atlas of Living Australia</div></div>
+                <div id="alaHeadingText"><div id="poweredBy">powered by</div><div id="alaBy" class="visible-desktop">Atlas of Living Australia</div>
+                <div class="hidden-desktop">ALA</div></div>
             </a>
             <div class="pull-right">
                 <div class="nav-collapse collapse pull-right">
