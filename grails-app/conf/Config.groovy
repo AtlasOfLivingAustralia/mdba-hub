@@ -50,6 +50,7 @@ map.densityCountThreshold = 10000
 
 // set temporary data hub context  **** remove before compiling to production ***
 biocache.queryContext="data_hub_uid:dh10"
+//biocache.groupedFacetsUrl = "file:///data/mdba-hub/config/grouped_facets_mdba.json"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
 //biocache.queryContext="data_resource_uid:dr2244
 mdba.mdbaRegionCode = "cl1059"
