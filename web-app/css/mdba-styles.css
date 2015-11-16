@@ -332,6 +332,10 @@ body .navbar {
     color:#00A18F;
 }
 
+.leaflet-container a {
+    color: #00A18F;
+}
+
 /* Responsive rules */
 
 @media (max-width: 979px) {

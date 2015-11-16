@@ -2,3 +2,4 @@
 
 # Murray-Darling Basin Authority (MDBA) Data Portal
 
+Current version: 1.0-SNAPSHOT
