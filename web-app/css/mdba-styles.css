@@ -240,6 +240,9 @@ body .navbar {
 
 #homeBanner {
     background-image: url("../images/kingfisher_strip.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #323334;
     height: 240px;
     padding: 20px 40px;
     margin-top: 0px;
