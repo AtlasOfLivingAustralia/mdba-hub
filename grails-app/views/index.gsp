@@ -34,7 +34,7 @@
     <div class="span12" id="quickSearchBox">
         <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
             <div class="input-append pull-right">
-                <input class="input-large span2" placeholder="Quick search" name="taxa" type="text">
+                <input class="input span2" placeholder="Quick search" name="taxa" type="text">
                 <button class="btn btn-primary" type="submit">Go!</button>
             </div>
         </form>
