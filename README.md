@@ -7,6 +7,8 @@ Current version: 1.0-SNAPSHOT
 Deploying a new version of mdba-hub to Nexus
 ===========================================
 
+Before deploying a new version, check that the biocache-hubs dependency version is up to date in grails-app/conf/BuildConfig.groovy.
+
 Travis-CI is used to deploy new versions of mdba-hub to Nexus. This is done automatically by updating the version number in the application.properties file and pushing to GitHub.
 
 Once the new version of mdba-hub is deployed to Nexus, the version number in ansible-inventories needs to change. To do this, the version number must be changed in: 
