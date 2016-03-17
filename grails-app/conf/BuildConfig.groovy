@@ -52,6 +52,6 @@ grails.project.dependency.resolution = {
         runtime ":resources:1.2.14"
         runtime ":cached-resources:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
-        runtime ":biocache-hubs:0.74"
+        runtime ":biocache-hubs:0.75"
     }
 }
