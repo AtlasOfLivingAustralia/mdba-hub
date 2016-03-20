@@ -13,7 +13,7 @@ Travis-CI is used to deploy new versions of mdba-hub to Nexus. This is done auto
 
 Once the new version of mdba-hub is deployed to Nexus, the version number in ansible-inventories needs to change. To do this, the version number must be changed in: 
 
-https://github.com/AtlasOfLivingAustralia/ansible-inventories/blob/master/mdba-test.ala.org.au
+https://github.com/AtlasOfLivingAustralia/ansible-inventories/blob/master/mdba.ala.org.au
 
 If the biocache_hub_version is commented out then presumably it will use the most recent version it can find.
 
@@ -40,5 +40,5 @@ Then you can clone the ansible instructions and install it onto the given machin
 
 ```
 $ git clone git@github.com:AtlasOfLivingAustralia/ansible-inventories.git
-$ ansible-playbook -i ansible-inventories/mdba-test.ala.org.au ala-install/ansible/mdba-hub-standalone.yml --private-key ~/.vagrant.d/insecure_private_key -vvvv --user vagrant --sudo
+$ ansible-playbook -i ansible-inventories/mdba.ala.org.au ala-install/ansible/mdba-hub-standalone.yml --private-key ~/.vagrant.d/insecure_private_key -vvvv --user vagrant --sudo
 ```
