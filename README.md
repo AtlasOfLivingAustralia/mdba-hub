@@ -33,7 +33,7 @@ $ (cd ala-install/vagrant/ubuntu-trusty && vagrant up)
 Add a line to your /etc/hosts file with the following information, replacing '10.1.1.3' with whatever IP address is assigned to the virtual machine that Vagrant starts up in VirtualBox:
 
 ```
-10.1.1.3 mdba-test.ala.org.au
+10.1.1.3 mdba.ala.org.au
 ```
 
 Then you can clone the ansible instructions and install it onto the given machine:
