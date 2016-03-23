@@ -22,63 +22,14 @@ import org.codehaus.groovy.grails.web.json.JSONArray
  */
 class BrowseByController {
     def restService
+    static defaultAction = "species"
 
-    def index() {
-        redirect(action: 'species')
-    }
-
-    def species2() {
-        //Map speciesGroupsForHub = restService.getFacetNames("species_group")
-        def speciesGroupsForHub = restService.getSpeciesGroups(2,2)
-        Map SpeciesGroupMap = [:]
-        log.debug "speciesGroupsForHub = ${speciesGroupsForHub} || ${speciesGroupsForHub.getClass()?.name}"
-
-        speciesGroupsForHub.each {
-            JSONArray species = restService.getSpeciesForGroup(it.name)
-            log.debug "${it.name} <> species = ${species}"
-            species.each { it.imageUrl = "http://bie.ala.org.au/ws/species/image/thumbnail/${it.guid}"  }
-            SpeciesGroupMap.put(it.name, species)
-        }
-
-        [speciesGroupMap: SpeciesGroupMap]
-    }
-
-    def species1() {
-        def fileUri = "${grailsApplication.config.iconicSpeciesUri}"
-        Map SpeciesGroupMap = [:]
-
-        if (fileUri && fileUri.length() > 4) {
-            JSONArray iconicSpeciesList = restService.getIconicSpecies(fileUri)
-            //log.debug "iconicSpeciesList = ${iconicSpeciesList} "
-
-            // extact list of scientific names
-            List names = iconicSpeciesList.collect { it.scientificName }
-
-
-            iconicSpeciesList.each {
-                //SpeciesGroupMap[it.grouping].add(it.commonName)
-
-                if (!SpeciesGroupMap.containsKey(it.grouping)) {
-                    SpeciesGroupMap.put(it.grouping, [])
-                }
-
-                it.imageUrl = "http://bie.ala.org.au/ws/species/image/thumbnail/" + it.scientificName
-
-                // lookup taxa
-
-                SpeciesGroupMap[it.grouping].add(it) // adds as jsonObject
-            }
-
-            log.debug "SpeciesGroupMap = ${SpeciesGroupMap}"
-        } else {
-            render(status: 503, text: "Species configuration file note found or readable: ${fileUri}")
-            return
-        }
-
-
-        [speciesGroupMap: SpeciesGroupMap]
-    }
-
+    /**
+     * Provide a species thumbnail view based on MDBA iconic species list
+     * at http://lists.ala.org.au/speciesListItem/list/dr2660#list
+     *
+     * @return
+     */
     def species() {
         def listUid = grailsApplication.config.specieslist.uid
         [speciesGroupMap: restService.getSpeciesListItemsForUid(listUid)]

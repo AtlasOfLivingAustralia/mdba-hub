@@ -74,10 +74,17 @@ class RestService {
         }
     }
 
+    /**
+     * Generate the model to populate the browseBySpecies view
+     *
+     * @param uid
+     * @return
+     */
+    @Cacheable('longTermCache')
     Map getSpeciesListItemsForUid(String uid) {
         def url = "${grailsApplication.config.specieslist.baseUrl}${grailsApplication.config.specieslist.itemsPath}${uid}?includeKVP=true"
         JSONArray listItems = webServicesService.getJsonElements(url)
-        log.debug "listItems = ${listItems}"
+
         // add BIE derived additional data (common name, image URL)
         List guids = listItems.collect { it.lsid } // List of guids
         // do lookup & populate Map
@@ -110,17 +117,16 @@ class RestService {
                 // existing group
                 speciesgroupMap.get(group).add(itemMap)
             } else {
-                // newgroup
+                // new group
                 speciesgroupMap.put(group, [itemMap])
             }
         }
 
         speciesgroupMap
-
     }
 
     /**
-     * Taken from specilist-webapp
+     * Taken from specieslist-webapp
      *
      * @param list
      * @return
