@@ -50,13 +50,13 @@
             %{--<g:set var="fqs" value="${params.list('fq')}" />--}%
             <g:each in="${speciesGroupMap}" var="group" status="s">
                 <g:set var="active" value="${(s == 0) ? 'active' : ''}"/>
-                <li class="${active}"><a href="#species_${group.key}">${group.key} (${group.value?.size()})<i class="icon-chevron-right"></i> </a></li>
+                <li class="${active}"><a href="#species_${group.key?.replaceAll(/\s+/,"_")}">${group.key} (${group.value?.size()})<i class="icon-chevron-right"></i> </a></li>
             </g:each>
         </ul>
     </div> <!-- /span3 -->
     <div class="span9">
         <g:each in="${speciesGroupMap}" var="group" status="s">
-            <div id="species_${group.key}" class="gridView">
+            <div id="species_${group.key?.replaceAll(/\s+/,"_")}" class="gridView">
                 <h3>${group.key}</h3>
                 <g:each in="${group.value}" var="taxon">
                     <div class="imgCon">
