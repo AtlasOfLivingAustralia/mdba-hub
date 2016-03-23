@@ -27,7 +27,7 @@ class BrowseByController {
         redirect(action: 'species')
     }
 
-    def species() {
+    def species2() {
         //Map speciesGroupsForHub = restService.getFacetNames("species_group")
         def speciesGroupsForHub = restService.getSpeciesGroups(2,2)
         Map SpeciesGroupMap = [:]
@@ -41,5 +41,46 @@ class BrowseByController {
         }
 
         [speciesGroupMap: SpeciesGroupMap]
+    }
+
+    def species1() {
+        def fileUri = "${grailsApplication.config.iconicSpeciesUri}"
+        Map SpeciesGroupMap = [:]
+
+        if (fileUri && fileUri.length() > 4) {
+            JSONArray iconicSpeciesList = restService.getIconicSpecies(fileUri)
+            //log.debug "iconicSpeciesList = ${iconicSpeciesList} "
+
+            // extact list of scientific names
+            List names = iconicSpeciesList.collect { it.scientificName }
+
+
+            iconicSpeciesList.each {
+                //SpeciesGroupMap[it.grouping].add(it.commonName)
+
+                if (!SpeciesGroupMap.containsKey(it.grouping)) {
+                    SpeciesGroupMap.put(it.grouping, [])
+                }
+
+                it.imageUrl = "http://bie.ala.org.au/ws/species/image/thumbnail/" + it.scientificName
+
+                // lookup taxa
+
+                SpeciesGroupMap[it.grouping].add(it) // adds as jsonObject
+            }
+
+            log.debug "SpeciesGroupMap = ${SpeciesGroupMap}"
+        } else {
+            render(status: 503, text: "Species configuration file note found or readable: ${fileUri}")
+            return
+        }
+
+
+        [speciesGroupMap: SpeciesGroupMap]
+    }
+
+    def species() {
+        def listUid = grailsApplication.config.specieslist.uid
+        [speciesGroupMap: restService.getSpeciesListItemsForUid(listUid)]
     }
 }

@@ -60,13 +60,13 @@
                 <h3>${group.key}</h3>
                 <g:each in="${group.value}" var="taxon">
                     <div class="imgCon">
-                        <g:set var="searchUrl">/occurrences/search?q=lsid:${taxon.guid}</g:set>
-                        <a class="thumbImage viewRecordButton" rel="thumbs" title="click to view records for ${taxon.commonName?:taxon.name}" href="${g.createLink(uri:searchUrl)}"
-                           data-id="${taxon.guid}">
+                        <g:set var="searchUrl">/occurrences/search?taxa=${taxon.scientificName}</g:set>
+                        <a class="thumbImage viewRecordButton" rel="thumbs" title="click to view records for ${taxon.commonName?:taxon.scientificName}" href="${g.createLink(uri:searchUrl)}"
+                           data-id="${taxon.scientificName}">
                             <img src="${g.createLink(uri:'/images/infobox_info_icon.png')}" data-original="${taxon.imageUrl?:g.createLink(uri:'/images/infobox_info_icon.png')}" class="lazy" alt="species image"/>
                         </a>
                         <div class="meta brief">
-                            ${taxon.commonName?:taxon.name}
+                            ${taxon.commonName?:taxon.scientificName}
                         </div>
                     </div>
                 </g:each>

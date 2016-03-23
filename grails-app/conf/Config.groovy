@@ -53,8 +53,12 @@ biocache.queryContext="data_hub_uid:dh10"
 //biocache.groupedFacetsUrl = "file:///data/mdba-hub/config/grouped_facets_mdba.json"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
 //biocache.queryContext="data_resource_uid:dr2244
+bieService.baseUrl = "http://bie.ala.org.au/ws"
 mdba.mdbaRegionCode = "cl1059"
 mdba.mdbaDataCode = "dr2244"
+specieslist.baseUrl = "http://lists.ala.org.au/ws"
+specieslist.itemsPath = "/speciesListItems/"
+specieslist.uid = "dr2660"
 
 /******************************************************************************\
  *  MISC
