@@ -106,11 +106,12 @@ class RestService {
             itemMap.scientificName = item.name
             itemMap.guid = item.lsid
 
+            // augment data with BIE fields
             if (guidsMap.containsKey(item.lsid)) {
                 List data = guidsMap.get(item.lsid)
                 itemMap.commonName = data[1]
                 itemMap.imageUrl = data[0]
-                itemMap.matcedName = data[3]
+                itemMap.matchedName = data[3]
             }
 
             if (group && speciesgroupMap.containsKey(group)) {

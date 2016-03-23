@@ -135,11 +135,11 @@
             </g:else>
             %{-- Include toggle for all/mdba records for when no results are found after clicking this toggle --}%
             <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
-            <g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.findAll { it.contains(mdbaDataCode) } }">
+            %{--<g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.findAll { it.contains(mdbaDataCode.toString()) } }">--}%
                 <div class="activeFilters">
                     Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(mdbaDataCode) }) ? '':'checked'}/>
                 </div>
-            </g:if>
+            %{--</g:if>--}%
         </div>
     </g:elseif>
     <g:else>
@@ -206,12 +206,14 @@
                         <span class="queryDisplay"><strong>${raw(queryDisplay)}</strong></span>&nbsp;&nbsp;
                     %{--<g:set var="hasFq" value="${false}"/>--}%
                     <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
-                    <g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.find { it.contains(mdbaDataCode) } }">
+                    %{--<g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.find { it.contains(mdbaDataCode) || sr.urlParameters.contains(mdbaRegionCode) } }">--}%
                         <div class="activeFilters">
                             Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(mdbaDataCode) }) ? '':'checked'}/>
                         </div>
                         <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_resource_uid') } -->
-                    </g:if>
+                    %{--</g:if>--}%
+                    <!-- sr.activeFacetMap = ${sr.activeFacetMap} || fqs = ${fqs} || mdbaRegionCode = ${mdbaRegionCode} -->
+                    <!-- sr.urlParameters = ${raw(sr.urlParameters)}  -->
                     <g:if test="${sr.activeFacetMap?.size() > 0 || params.wkt || params.radius}">
                         <div class="activeFilters">
                             <b><alatag:message code="search.filters.heading" default="Selected filters"/></b>:&nbsp;
