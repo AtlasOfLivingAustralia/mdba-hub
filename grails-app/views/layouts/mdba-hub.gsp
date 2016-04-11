@@ -94,6 +94,16 @@
                         <li><a href="${request.contextPath}/search">Search</a></li>
                         <li><a href="${request.contextPath}/about">About</a></li>
                         <li><a href="${request.contextPath}/help">Help</a></li>
+                        <g:if test="${!alatag.loggedInUserId()}">
+                        <li>
+                            <a href="${grailsApplication.config.casServerLoginUrl}?service=${grailsApplication.config.serverName}${request.forwardURI}">Login</a>
+                        </li>
+                        </g:if>
+                        <g:if test="${!!alatag.loggedInUserId()}">
+                        <li>
+                            <a href="${grailsApplication.config.grails.serverURL}/logout/logout?casUrl=${grailsApplication.config.casServerUrlPrefix}/logout&appUrl=${grailsApplication.config.serverName}${request.forwardURI}">Logout</a>
+                        </li>
+                        </g:if>
                     </ul>
                 </div><!--/.nav-collapse -->
                 %{--<div class="controls" style="padding-top: 18px">--}%
