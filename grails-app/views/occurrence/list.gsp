@@ -21,7 +21,7 @@
 <%@ page import="groovy.json.StringEscapeUtils" contentType="text/html;charset=UTF-8" %>
 <g:set var="startPageTime" value="${System.currentTimeMillis()}"/>
 <g:set var="queryDisplay" value="${sr?.queryTitle?:searchRequestParams?.displayString?:''}"/>
-<g:set var="searchQuery" value="${grailsApplication.config.skin.useAlaBie ? 'taxa' : 'q'}"/>
+<g:set var="searchQuery" value="${'q'}"/>
 <g:set var="mdbaRegionCode" value="${grailsApplication.config.mdba.mdbaRegionCode}"/>
 <g:set var="mdbaDataCode" value="${grailsApplication.config.mdba.mdbaDataCode}"/>
 <!DOCTYPE html>
@@ -99,6 +99,7 @@
             <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
                 <div id="advancedSearchLink"><a href="${g.createLink(uri: '/search')}#tab_advanceSearch"><g:message code="list.advancedsearchlink.navigator" default="Advanced search"/></a></div>
                 <div class="input-append">
+                    <input type="hidden" name="fq" value="data_resource_uid:${grailsApplication.config.mdba.mdbaDataCode}">
                     <input type="text" id="taxaQuery" name="${searchQuery}" class="input-xlarge" value="${params.list(searchQuery).join(' OR ')}">
                     <button type="submit" id="solrSubmit" class="btn"><g:message code="list.advancedsearchlink.button.label" default="Quick search"/></button>
                 </div>

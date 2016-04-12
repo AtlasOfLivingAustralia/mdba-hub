@@ -1,4 +1,12 @@
 /* Hide parts of biocache hubs that are not needed in MDBA hub */
-#t2, #t3, #t4, #t5, #advanceSearch, #taxaUpload, #catalogUpload, #spatialSearch{
+ul#searchTabs #t1,ul#searchTabs #t3,ul#searchTabs #t4,ul#searchTabs #t5, #simpleSearch, #taxaUpload, #catalogUpload, #spatialSearch{
+    display: none;
+}
+
+#advancedSearchForm > b:nth-child(11), #advancedSearchForm > table:nth-child(12),
+#advancedSearchForm > b:nth-child(15), #advancedSearchForm > table:nth-child(16),
+#advancedSearchForm > b:nth-child(17), #advancedSearchForm > table:nth-child(18),
+#advancedSearchForm > b:nth-child(19), #advancedSearchForm > table:nth-child(20)
+{
     display: none;
 }

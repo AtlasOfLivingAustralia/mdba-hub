@@ -91,7 +91,7 @@
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
                         <li><a href="${request.contextPath}/index">Home</a></li>
-                        <li><a href="${request.contextPath}/search">Search</a></li>
+                        <li><a href="${request.contextPath}/occurrences/search?fq=data_resource_uid:${grailsApplication.config.mdba.mdbaDataCode}#tab_mapView">Search</a></li>
                         <li><a href="${request.contextPath}/about">About</a></li>
                         <li><a href="${request.contextPath}/help">Help</a></li>
                         <g:if test="${!alatag.loggedInUserId()}">
