@@ -9,6 +9,7 @@ modules = {
         dependsOn 'bootstrap2', 'hubCore','font-awesome'
         resource url: [dir:'css', file:'Common_fonts.css']
         resource url: [dir:'css', file:'mdba-styles.css']
+        resource url: [dir: 'css', file: 'hidden-elements.css']
     }
 
 //    fontawesome {

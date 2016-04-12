@@ -1,0 +1,4 @@
+/* Hide parts of biocache hubs that are not needed in MDBA hub */
+#t2, #t3, #t4, #t5, #advanceSearch, #taxaUpload, #catalogUpload, #spatialSearch{
+    display: none;
+}
