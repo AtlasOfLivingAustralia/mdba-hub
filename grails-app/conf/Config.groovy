@@ -43,19 +43,20 @@ chartsBgColour = "#FFFFFF"
 map.overlay.url = "http://spatial.ala.org.au/geoserver/ALA/wms"
 map.overlay.name = "Murray-Darling Basin"
 map.overlay.layer = "ALA:Objects"
-map.overlay.viewparams = "s:5769190"
+map.overlay.viewparams = "s:6239153" //cl2110
 map.overlay.opacity = "0.5"
 map.defaultFacetMapColourBy = "grid"
 map.densityCountThreshold = 10000
 
 // set temporary data hub context  **** remove before compiling to production ***
-biocache.queryContext="data_hub_uid:dh10"
+biocache.queryContext="cl2110:\"Murray-Darling Basin Boundary\""
 //biocache.groupedFacetsUrl = "file:///data/mdba-hub/config/grouped_facets_mdba.json"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
 //biocache.queryContext="data_resource_uid:dr2244
 bieService.baseUrl = "http://bie.ala.org.au/ws"
-mdba.mdbaRegionCode = "cl1059"
+mdba.mdbaRegionCode = "cl2110"
 mdba.mdbaDataCode = "dr2244"
+mdba.mdbaDataHubFilter = "data_hub_uid:dh10"
 mdba.basinChampions = "https://biocollect.ala.org.au/mdba/project/index/4d15b4df-c05b-41bd-ac5b-8a65c9e37d17"
 mdba.regions = "http://mdba-regions.ala.org.au/"
 specieslist.baseUrl = "http://lists.ala.org.au/ws"

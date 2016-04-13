@@ -32,4 +32,23 @@ modules = {
         resource url: [dir:'js', file:'bootstrap-switch.min.js']
     }
 
+    datasets {
+        resource url:'js/datasets.js'
+    }
+
+    bbq {
+        resource url: [dir: 'js', file: 'jquery.ba-bbq.min.js']
+    }
+
+    jquery_json {
+        resource url:'js/jquery.json-2.2.min.js'
+    }
+
+    rotate {
+        resource url:'js/jQueryRotateCompressed.2.1.js'
+    }
+
+    jquery_tools {
+        resource url: 'js/jquery.tools.min.js'
+    }
 }

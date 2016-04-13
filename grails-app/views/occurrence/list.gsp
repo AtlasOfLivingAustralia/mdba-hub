@@ -23,7 +23,6 @@
 <g:set var="queryDisplay" value="${sr?.queryTitle?:searchRequestParams?.displayString?:''}"/>
 <g:set var="searchQuery" value="${'q'}"/>
 <g:set var="mdbaRegionCode" value="${grailsApplication.config.mdba.mdbaRegionCode}"/>
-<g:set var="mdbaDataCode" value="${grailsApplication.config.mdba.mdbaDataCode}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,9 +79,9 @@
                     console.log("switch toggled", state);
                     if (!state) {
                         // MDBA visible
-                        reloadWithParam('fq', 'data_resource_uid:${mdbaDataCode?:""}');
+                        reloadWithParam('fq', '${grailsApplication.config.mdba.mdbaDataHubFilter?:""}');
                     } else {
-                        removeFilter($('a').data('facet','data_resource_uid'));
+                        removeFilter($('a').data('facet','data_hub_uid'));
                     }
                 }
             });
@@ -99,7 +98,7 @@
             <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
                 <div id="advancedSearchLink"><a href="${g.createLink(uri: '/search')}#tab_advanceSearch"><g:message code="list.advancedsearchlink.navigator" default="Advanced search"/></a></div>
                 <div class="input-append">
-                    <input type="hidden" name="fq" value="data_resource_uid:${grailsApplication.config.mdba.mdbaDataCode}">
+                    <input type="hidden" name="fq" value="${grailsApplication.config.mdba.mdbaDataHubFilter}">
                     <input type="text" id="taxaQuery" name="${searchQuery}" class="input-xlarge" value="${params.list(searchQuery).join(' OR ')}">
                     <button type="submit" id="solrSubmit" class="btn"><g:message code="list.advancedsearchlink.button.label" default="Quick search"/></button>
                 </div>
@@ -136,11 +135,9 @@
             </g:else>
             %{-- Include toggle for all/mdba records for when no results are found after clicking this toggle --}%
             <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
-            %{--<g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.findAll { it.contains(mdbaDataCode.toString()) } }">--}%
-                <div class="activeFilters">
-                    Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(mdbaDataCode) }) ? '':'checked'}/>
-                </div>
-            %{--</g:if>--}%
+            <div class="activeFilters">
+                Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(grailsApplication.config.mdba.mdbaDataHubFilter) }) ? '':'checked'}/>
+            </div>
         </div>
     </g:elseif>
     <g:else>
@@ -207,12 +204,10 @@
                         <span class="queryDisplay"><strong>${raw(queryDisplay)}</strong></span>&nbsp;&nbsp;
                     %{--<g:set var="hasFq" value="${false}"/>--}%
                     <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
-                    %{--<g:if test="${sr.activeFacetMap.containsKey(mdbaRegionCode) || fqs.find { it.contains(mdbaDataCode) || sr.urlParameters.contains(mdbaRegionCode) } }">--}%
-                        <div class="activeFilters">
-                            Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(mdbaDataCode) }) ? '':'checked'}/>
-                        </div>
-                        <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_resource_uid') } -->
-                    %{--</g:if>--}%
+                    <div class="activeFilters">
+                        Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(grailsApplication.config.mdba.mdbaDataHubFilter) }) ? '':'checked'}/>
+                    </div>
+                    <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_resource_uid') } -->
                     <!-- sr.activeFacetMap = ${sr.activeFacetMap} || fqs = ${fqs} || mdbaRegionCode = ${mdbaRegionCode} -->
                     <!-- sr.urlParameters = ${raw(sr.urlParameters)}  -->
                     <g:if test="${sr.activeFacetMap?.size() > 0 || params.wkt || params.radius}">
