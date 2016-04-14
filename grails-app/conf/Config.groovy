@@ -66,6 +66,9 @@ specieslist.itemsPath = "/speciesListItems/"
 specieslist.uid = "dr2660"
 collectory.resources = "http://collections.ala.org.au/public/resources.json"
 
+upload.extensions.blacklist = ['exe','js','php','asp','aspx','com','bat']
+webservice.apiKeyHeader='Authorization' // Required for calls to ecodata
+
 /******************************************************************************\
  *  MISC
 \******************************************************************************/
@@ -93,8 +96,9 @@ grails.mime.types = [ // the first one is the default format
 //grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
-grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/fonts/*']
-grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**', '/bootstrap/**', '/fonts/**']
+grails.resources.resourceLocatorEnabled = true
+grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*', '/fonts/*', '/vendor/*']
+grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**', '/bootstrap/**', '/fonts/**', '/vendor/**']
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"

@@ -12,6 +12,7 @@ class UrlMappings {
         "/contact"(view:"/contact")
         "/access"(view:"/access")
         "/disclaim"(view:"/disclaim")
+        "/resources"(controller: 'resource', action:'list')
         "500"(view:'/error')
 	}
 }

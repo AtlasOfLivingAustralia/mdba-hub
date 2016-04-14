@@ -46,14 +46,18 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        build ":release:3.0.1"
+        build ":release:3.1.1"
         build ":tomcat:7.0.54"
-        compile ":ala-auth:1.3.1"
+        compile ":ala-auth:1.3.2-SNAPSHOT"
         compile ':cache:1.1.1'
         compile ":cache-headers:1.1.6"
+        compile ":document-preview-plugin:0.1-SNAPSHOT"
+        compile ":ala-ws-plugin:1.0"
         runtime ":resources:1.2.14"
         runtime ":cached-resources:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
-        runtime ":biocache-hubs:0.75"
+        runtime (":biocache-hubs:0.75") {
+            excludes "release"
+        }
     }
 }
