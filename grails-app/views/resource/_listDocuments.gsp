@@ -66,7 +66,7 @@
     $(window).load(function () {
 
         var options = {
-            imageLocation:"${resource(dir:'/images', plugin: 'document-preview')}",
+            imageLocation:"${resource(dir:'/images', plugin: 'document-preview-plugin')}",
             pdfgenUrl: "${createLink(controller: 'preview', action: 'pdfUrl')}",
             pdfViewer: "${createLink(controller: 'preview', action: 'viewer')}",
             imgViewer: "${createLink(controller: 'preview', action: 'imageviewer')}",

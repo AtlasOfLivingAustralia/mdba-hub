@@ -56,6 +56,7 @@ modules = {
     knockout {
         resource url: [dir:'vendor/knockoutjs/3.4.0/', file:'knockout-3.4.0.min.js']
         resource url: [dir:'vendor/knockoutjs', file:'knockout.mapping-latest.js']
+        resource url: [dir:'js', file:'knockout-extenders.js']
     }
 
     resources {
