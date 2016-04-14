@@ -49,7 +49,7 @@
 <div class="${fluidLayout?'row-fluid':'row'}">
     <g:render template="/homeActionButton" model="[label:'Traditional Owner Groups',href:'']"/>
     <g:render template="/homeActionButton" model="[label:'Basin Champions', href:grailsApplication.config.mdba.basinChampions]"/>
-    <g:render template="/homeActionButton" model="[label:'Resources',href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Resources',href:g.createLink(controller: 'resource', action:'list')]"/>
 </div><!-- end .row-fluid -->
 <div class="indexBuffer"></div>
 </body>
