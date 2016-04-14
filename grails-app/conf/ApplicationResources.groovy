@@ -65,7 +65,7 @@ modules = {
     }
 
     rotate {
-        resource url:'js/jQueryRotateCompressed.2.1.js'
+//        resource url:'js/jQueryRotateCompressed.2.1.js'
     }
 
     jquery_tools {
