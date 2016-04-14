@@ -1,39 +1,43 @@
 package au.org.ala.biocache.hubs.mdba
 
+
+import au.org.ala.web.AlaSecured
+import au.org.ala.web.AuthService
+import au.org.ala.web.CASRoles
 import grails.converters.JSON
 import org.apache.commons.io.FilenameUtils
-import static org.apache.http.HttpStatus.*;
+import org.codehaus.groovy.grails.commons.GrailsApplication
+import org.codehaus.groovy.grails.web.json.JSONArray
+import org.codehaus.groovy.grails.web.json.JSONObject
+
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST
 
 class ResourceController {
 
-    def grailsApplication, documentService, webService
+    static final String ADMIN_ROLE = 'ROLE_MDBA_ADMIN'
+    final String MDA_DOCUMENT_ROLE = 'mdba'
 
-    def index() {}
+    GrailsApplication grailsApplication
+    EcodataResourceService ecodataResourceService
+    AuthService authService
 
-    def createLink() {
-        def link = request.JSON
-        documentService.saveLink(link)
+    def list() {
+        Map searchParams = [role:MDA_DOCUMENT_ROLE]
+
+        Map result = ecodataResourceService.search(searchParams)
+        Boolean isAdmin = authService.userInRole(ADMIN_ROLE) || authService.userInRole(CASRoles.ROLE_ADMIN)
+        [documents:modelAsJavascript(result.documents), admin:isAdmin]
     }
 
-    def bulkUpdate() {
-        def result = [:]
-        def documents = request.JSON
-        if (!documents || !documents instanceof List) {
-            response.status = SC_BAD_REQUEST
-            result.error = 'Request body must contain a json array of documents to update'
-        }
-        else {
+    String modelAsJavascript(def model) {
 
-            documents.each {
-                def resp = documentService.updateDocument(it)
-                if (resp.statusCode != SC_OK || result.error) {
-                    response.staus = resp.statusCode
-                    result.error = 'There was an error performing the update - please try again later'
-                }
-            }
+        if (!(model instanceof JSONObject) && !(model instanceof JSONArray)) {
+            model = model as JSON
 
         }
-        render result as JSON
+        def json = (model?:[:] as JSON)
+        def modelJson = json.toString()
+        modelJson.encodeAsJavaScript()
     }
 
     /**
@@ -41,21 +45,25 @@ class ResourceController {
      * @param id the id of the document to update (if not supplied, a create operation will be assumed).
      * @return the result of the update.
      */
+    @AlaSecured(value = ['ROLE_MDBA_ADMIN','ROLE_ADMIN'], anyRole = true)
     def documentUpdate(String id) {
 
-        def url = grailsApplication.config.ecodata.baseUrl + "document" + (id ? "/" + id : '')
         if (request.respondsTo('getFile')) {
             def f = request.getFile('files')
             def originalFilename = f.getOriginalFilename()
             if(originalFilename){
                 def extension = FilenameUtils.getExtension(originalFilename)?.toLowerCase()
                 if (extension && !grailsApplication.config.upload.extensions.blacklist.contains(extension)){
-                    def result =  webService.postMultipart(url, [document:params.document], f).content as JSON
+
+                    Map document = JSON.parse(params.document)
+                    document.role = MDA_DOCUMENT_ROLE
+
+                    def result = ecodataResourceService.updateDocument(document, f)
 
                     // This is returned to the browswer as a text response due to workaround the warning
                     // displayed by IE8/9 when JSON is returned from an iframe submit.
                     response.setContentType('text/plain;charset=UTF8')
-                    render result.toString();
+                    render (result.resp as JSON).toString();
                 } else {
                     response.setStatus(SC_BAD_REQUEST)
                     //flag error for extension
@@ -77,7 +85,9 @@ class ResourceController {
         } else {
             // This is returned to the browswer as a text response due to workaround the warning
             // displayed by IE8/9 when JSON is returned from an iframe submit.
-            def result = documentService.updateDocument(JSON.parse(params.document))
+            Map document = JSON.parse(params.document)
+            document.role = MDA_DOCUMENT_ROLE
+            def result = ecodataResourceService.updateDocument(document)
             response.setContentType('text/plain;charset=UTF8')
             def resultAsText = (result as JSON).toString()
             render resultAsText
@@ -89,19 +99,10 @@ class ResourceController {
      * @param id the id of the document to delete.
      * @return the result of the deletion.
      */
+    @AlaSecured(value = ['ROLE_MDBA_ADMIN','ROLE_ADMIN'],  anyRole = true)
     def deleteDocument(String id) {
-        def url = grailsApplication.config.ecodata.baseUrl + "document/" + id
-        def responseCode = webService.doDelete(url)
-        render status: responseCode
+        def result = ecodataResourceService.delete(id)
+        render status: result.statusCode
     }
 
-    @PreAuthorise(accessLevel = "siteAdmin")
-    def downloadProjectDataFile() {
-        if (!params.id) {
-            response.setStatus(400)
-            render "A download ID is required"
-        } else {
-            webService.proxyGetRequest(response, "${grailsApplication.config.ecodata.baseUrl}search/downloadProjectDataFile/${params.id}?fileExtension=xlsx", true, true)
-        }
-    }
 }

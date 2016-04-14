@@ -37,7 +37,7 @@
     <button class="btn btn-mini" type="button" data-bind="enable:!readOnly,click:$root.deleteDocument"><i class="icon-remove"></i></button>
     <button class="btn btn-mini" type="button" data-bind="enable:!readOnly,click:$root.editDocumentMetadata"><i class="icon-edit"></i></button>
 </div>
-<a class="pull-left" style="width:32px;height:32px;" data-bind="attr:{href:url}" target="_blank">
+<a class="pull-left" style="width:32px;height:32px;" data-bind="attr:{href:url}, clickBubble: false" target="_blank">
     <img class="media-object img-rounded span1" data-bind="attr:{src:thumbnailUrl, alt:name}" style="width:32px;height:32px;"  alt="image preview icon">
 </a>
 <div data-bind="template:'imgMediaBody'"></div>
@@ -48,7 +48,7 @@
     <button class="btn btn-mini" type="button" data-bind="enable:!readOnly,click:$root.deleteDocument"><i class="icon-remove"></i></button>
     <button class="btn btn-mini" type="button" data-bind="enable:!readOnly,click:$root.editDocumentMetadata"><i class="icon-edit"></i></button>
 </div>
-<a class="pull-left" data-bind="attr:{href:url}">
+<a class="pull-left" data-bind="attr:{href:url}, clickBubble: false">
     <img class="media-object" data-bind="attr:{src:filetypeImg(), alt:name}" alt="document icon">
 </a>
 <div data-bind="template:'docMediaBody'"></div>
@@ -56,12 +56,12 @@
 
 <script id="docMediaBody" type="text/html">
 <div class="media-body">
-    <a class="btn btn-mini pull-right" data-bind="attr:{href:url}" target="_blank">
+    <a class="btn btn-mini pull-right" data-bind="attr:{href:url}, clickBubble: false" target="_blank">
         <i class="fa fa-download"></i>
     </a>
-    <a data-bind="attr:{href:url}">
-        <small class="media-heading" data-bind="text:name"></small>
-    </a>
+
+    <small class="media-heading" data-bind="text:name"></small>
+
     <span class="muted" data-bind="if:$data.attribution">
         <small data-bind="text:attribution"></small>
     </span>
@@ -70,12 +70,12 @@
 
 <script id="imgMediaBody" type="text/html">
 <div class="media-body">
-    <a class="btn btn-mini pull-right" data-bind="attr:{href:url}" target="_blank">
+    <a class="btn btn-mini pull-right" data-bind="attr:{href:url}, clickBubble: false" target="_blank">
         <i class="fa fa-download"></i>
     </a>
-    <a data-bind="attr:{href:url}" target="_blank">
-        <small class="media-heading" data-bind="text:name"></small>
-    </a>
+
+    <small class="media-heading" data-bind="text:name"></small>
+
     <span class="muted" data-bind="if:$data.attribution">
         <small data-bind="text:attribution"></small>
     </span>

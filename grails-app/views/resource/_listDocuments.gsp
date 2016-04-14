@@ -1,5 +1,9 @@
-<div class="row-fluid row-eq-height" id="${containerId}">
+<%@ page import="grails.converters.JSON" %>
+
+<div class="row-fluid row-eq-height" id="resourceList">
+
     <div class="span4">
+
         <div class="btn-toolbar text-right">
             <div class="input-prepend input-append text-left">
                 <span class="add-on"><i class="fa fa-filter"></i></span>
@@ -21,12 +25,13 @@
             <!-- ko if: filteredDocuments().length == 0 -->
                 <h4 class="text-center">No documents</h4>
             <!-- /ko -->
-            <ul class="nav nav-list fc-docs-list" data-bind="foreach: { data: filteredDocuments, afterAdd: showListItem, beforeRemove: hideListItem }">
-                <li class="pointer" data-bind="{ if: (role() == '${filterBy}' || 'all' == '${filterBy}') && role() != '${ignore}' && role() != 'variation', click: $parent.selectDocument, css: { active: $parent.selectedDocument() == $data } }">
-                    <div class="clearfix space-after media" data-bind="template:ko.utils.unwrapObservable(type) === 'image' ? 'imageDocTmpl' : 'objDocTmpl'"></div>
+            <ul class="nav nav-list fc-docs-list" data-bind="foreach: { data: filteredDocuments }">
+                <li class="pointer" data-bind="{ click: $parent.selectDocument, css: { active: $parent.selectedDocument() == $data } }">
+                    <div class="clearfix space-after media" data-bind="template:$parent.documentTemplate($data)"></div>
                 </li>
             </ul>
         </div>
+        <g:if test="${admin}"><button class="btn" data-bind="click:attachDocument">New Resource</button></g:if>
     </div>
     <div class="fc-resource-preview-container span8" data-bind="{ template: { name: previewTemplate } }"></div>
 </div>
@@ -55,18 +60,28 @@
     </div>
 </script>
 
-<g:render template="/shared/documentTemplate"></g:render>
+<g:render template="documentTemplate"></g:render>
 <r:script>
-    var imageLocation = "${imageUrl}",
-        useExistingModel = ${useExistingModel};
 
     $(window).load(function () {
 
-        if (!useExistingModel) {
-
-            var docListViewModel = new DocListViewModel(${documents ?: []});
-            ko.applyBindings(docListViewModel, document.getElementById('${containerId}'));
+        var options = {
+            imageLocation:"${resource(dir:'/images', plugin: 'document-preview')}",
+            pdfgenUrl: "${createLink(controller: 'preview', action: 'pdfUrl')}",
+            pdfViewer: "${createLink(controller: 'preview', action: 'viewer')}",
+            imgViewer: "${createLink(controller: 'preview', action: 'imageviewer')}",
+            audioViewer: "${createLink(controller: 'preview', action: 'audioviewer')}",
+            videoViewer: "${createLink(controller: 'preview', action: 'videoviewer')}",
+            errorViewer: "${createLink(controller: 'preview', action: 'error')}",
+            documentUpdateUrl: "${createLink(controller:"resource", action:"documentUpdate")}",
+            documentDeleteUrl: "${g.createLink(controller:"resource", action:"deleteDocument")}",
+            admin: ${admin || false}
         }
+
+        var documents = JSON.parse('${documents.toString()}');
+        var docListViewModel = new DocListViewModel(documents || [], options);
+        ko.applyBindings(docListViewModel, document.getElementById('resourceList'));
+
     });
 
 </r:script>

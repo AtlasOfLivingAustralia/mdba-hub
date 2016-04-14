@@ -2,6 +2,7 @@ package au.org.ala.biocache.hubs.mdba
 
 import au.org.ala.ws.service.WebService
 import grails.converters.JSON
+import org.apache.http.entity.ContentType
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.springframework.web.multipart.MultipartFile
 
@@ -18,7 +19,7 @@ class EcodataResourceService {
 
     def delete(String id) {
         def url = "${grailsApplication.config.ecodata.baseURL}/document/${id}"
-        return webService.delete(url)
+        return webService.delete(url, [:], ContentType.TEXT_PLAIN)
     }
 
     def updateDocument(doc) {
@@ -31,15 +32,6 @@ class EcodataResourceService {
         def url = grailsApplication.config.ecodata.baseURL + "/document/${doc.documentId?:''}"
         def result = webService.postMultipart(url, [document:doc], [:], [file])
         return result
-   }
-
-    def updateDocument(doc, contentType, inputStream) {
-        def url = grailsApplication.config.ecodata.baseURL + "/document"
-        if (doc.documentId) {
-            url+="/"+doc.documentId
-        }
-        def params = [document:doc as JSON]
-        return webService.postMultipart(url, params, inputStream, contentType, doc.filename)
     }
 
     def Map search(Map params) {

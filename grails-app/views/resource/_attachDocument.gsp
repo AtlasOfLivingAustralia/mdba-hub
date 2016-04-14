@@ -1,4 +1,4 @@
-<r:require module="attachDocuments"/>
+
 <!-- ko stopBinding: true -->
 <div id="attachDocument" class="modal fade" style="display:none;">
     <div class="modal-dialog">
@@ -31,7 +31,7 @@
                         <label class="control-label" for="documentRole">Document type</label>
 
                         <div class="controls">
-                            <select style="width: 97%;" data-bind="options:roles, optionsText: 'name', optionsValue: 'id', value:role"></select>
+                            <select id="documentRole" style="width: 97%;" data-bind="options:roles, optionsText: 'name', optionsValue: 'id', value:role"></select>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                         <div id="thirdPartyConsentDeclarationMade" class="controls">
                             <label id="thirdPartyDeclarationText" class="checkbox" for="thirdPartyConsentDeclarationMade">
                                 <input id="thirdPartyConsentCheckbox" type="checkbox" name="thirdPartyConsentDeclarationMade" class="validate[required]" data-bind="checked:thirdPartyConsentDeclarationMade">
-                                <fc:getSettingContent settingType="${au.org.ala.biocollect.merit.SettingPageType.THIRD_PARTY_PHOTO_CONSENT_DECLARATION}"/>
+
                             </label>
                         </div>
                     </div>
