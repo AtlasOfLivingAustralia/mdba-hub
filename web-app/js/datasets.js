@@ -36,6 +36,8 @@ var total = 0;
 /* the base url of the home server */
 var baseUrl;
 
+var collectionsUrl
+
 /* the base url of the biocache server */
 var biocacheUrl;
 
@@ -43,10 +45,11 @@ var biocacheUrl;
 var tooltipOptions = {position:'center right',offset:[-10,5],predelay:130, effect:'fade', fadeOutSpeed: 200}
 
 /** load resources and show first page **/
-function loadResources(serverUrl, biocacheRecordsUrl) {
+function loadResources(serverUrl, biocacheRecordsUrl, externalResourceUrl, source) {
     baseUrl = serverUrl;
     biocacheUrl = biocacheRecordsUrl;
-    $.getJSON(baseUrl + "/datasets/resources", function(data) {
+    collectionsUrl = externalResourceUrl
+    $.getJSON(baseUrl + "/datasets/resources?source="+source, function(data) {
         allResources = data;
         // no filtering at this stage
         resources = allResources;
@@ -101,7 +104,7 @@ function appendResource(value) {
 
     // row A
     $rowA.append('<img title="'+ jQuery.i18n.prop('datasets.js.appendresource01') + '" src="' + baseUrl + '/images/skin/ExpandArrow.png"/>');  // twisty
-    $rowA.append('<span class="result-name"><a title="' + jQuery.i18n.prop('datasets.js.appendresource02') + '" href="' + baseUrl + '/public/showDataResource/' + value.uid + '">' + value.name + '</a></span>'); // name
+    $rowA.append('<span class="result-name"><a title="' + jQuery.i18n.prop('datasets.js.appendresource02') + '" href="' + collectionsUrl + '/public/showDataResource/' + value.uid + '" target="_blank">' + value.name + '</a></span>'); // name
     $rowA.find('a').tooltip(tooltipOptions);
     $rowA.find('img').tooltip($.extend({},tooltipOptions,{position:'center left'}));
 
@@ -110,7 +113,7 @@ function appendResource(value) {
     $rowB.append('<span><strong class="resultsLabel">License: </strong>' + (value.licenseType == null ? '' : value.licenseType) + '</span>'); // license type
     $rowB.append('<span><strong class="resultsLabel">License version: </strong>' + (value.licenseVersion == null ? '' : value.licenseVersion) + '</span>'); // license version
     if (value.resourceType == 'records') {
-        $rowB.append('<span class="viewRecords"><a title="' + jQuery.i18n.prop('datasets.js.appendresource03') + '" href="' + biocacheUrl + '/occurrences/search?q=data_resource_uid:' + value.uid + '">View records</a></span>'); // records link
+        $rowB.append('<span class="viewRecords"><a title="' + jQuery.i18n.prop('datasets.js.appendresource03') + '" href="' + biocacheUrl + '/occurrences/search?q=data_resource_uid:' + value.uid + '" target="_blank">View records</a></span>'); // records link
     }
     if (value.resourceType == 'website' && value.websiteUrl) {
         $rowB.append('<span class="viewWebsite"><a title="' + jQuery.i18n.prop('datasets.js.appendresource04') + '" class="external" target="_blank" href="' + value.websiteUrl + '">Website</a></span>'); // website link
@@ -215,7 +218,7 @@ function filterList() {
         });
         // do search
         console.log('Doing a search with query: ' + query);
-        $.ajax({url: baseUrl + "/public/dataSetSearch?q=" + query,
+        $.ajax({url: baseUrl + "/datasets/dataSetSearch?q=" + query,
             success: function(uids) {
                 applyFilters(uids);
                 $('.collectory-content').css('cursor','default');

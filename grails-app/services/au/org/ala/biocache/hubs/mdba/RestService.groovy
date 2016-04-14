@@ -12,13 +12,12 @@
  */
 
 package au.org.ala.biocache.hubs.mdba
-
 import grails.converters.JSON
 import grails.plugin.cache.Cacheable
 import groovyx.net.http.HTTPBuilder
+import org.apache.commons.httpclient.util.URIUtil
 import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONElement
-import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.util.UriUtils
 
 class RestService {
@@ -159,5 +158,66 @@ class RestService {
             log.error("Unable to obtain species details from BIE - " + ex.getMessage(), ex)
             map
         }
+    }
+
+    @Cacheable('longTermCache')
+    List getDataResources(String context){
+        String url;
+        List drDetails = []
+        switch (context){
+            case 'all':
+                url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?q=${URIUtil.encodeWithinQuery(grailsApplication.config.biocache.queryContext)}&facets=data_resource_uid&flimit=1000000"
+                break;
+            case 'mdba':
+                url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?q=${URIUtil.encodeWithinQuery(grailsApplication.config.mdba.mdbaDataHubFilter)}&facets=data_resource_uid&flimit=1000000"
+                break;
+        }
+
+        Map results = webServicesService.getJsonElements(url)
+        List drs = getDataResourceIdFromResult(results)
+        List dataResourceDetails = getDataResourcesFromCollectory(grailsApplication.config.collectory.resources)
+
+
+        drs.each { dr ->
+            Map dataResourceMetadata = dataResourceDetails.find {
+                it.uid == dr
+            }
+
+            if (dataResourceMetadata) {
+                drDetails.push(dataResourceMetadata)
+            }
+        }
+
+        drDetails
+    }
+
+    @Cacheable('longTermCache')
+    List getDataResourcesFromCollectory(String url){
+        webServicesService.getJsonElements(url)
+    }
+
+    List getFilteredDataResources(String query, String source){
+        List drs = getDataResources(source) ?:[]
+        List filteredDrs = drs.findAll {
+            it.name?.toLowerCase().contains(query)
+        }
+
+        filteredDrs?.collect{
+            it.uid
+        }
+    }
+
+    private List getDataResourceIdFromResult(Map results){
+        List dataResources = []
+        if(results?.facetResults?.size()){
+            List drs = results?.facetResults[0]?.fieldResult
+            if(drs?.size()){
+                dataResources = drs.collect { dr ->
+                    dr.fq?.replaceAll('"','').replace('data_resource_uid:','')
+                }
+            }
+        }
+
+        dataResources
     }
 }

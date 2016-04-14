@@ -22,15 +22,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="mdba-hub"/>
     <title>${grailsApplication.config.skin.orgNameLong}</title>
-    <r:require modules="datasets, jquery_json, bbq, rotate, jquery_tools"/>
+    <r:require modules="collectory"></r:require>
+    <r:require modules="jquery_json, bbq, rotate, jquery_tools, pagination, bootstrapSwitch, datasets"/>
+    <g:set var="defaultSource" value="mdba"></g:set>
     <script type="text/javascript">
         var altMap = true;
         $(document).ready(function() {
             $('#nav-tabs > ul').tabs();
-            loadResources("${grailsApplication.config.grails.serverURL}","${grailsApplication.config.biocacheUiURL}");
+            loadResources("${grailsApplication.config.grails.serverURL}","${grailsApplication.config.biocache.url}","${grailsApplication.config.collections.baseUrl}", '${defaultSource}');
             $('select#per-page').change(onPageSizeChange);
             $('select#sort').change(onSortChange);
             $('select#dir').change(onDirChange);
+        });
+        var COLLECTORY_CONF = { contextPath: "${grailsApplication.config.contextPath}", locale: "" }
+
+        $(document).ready(function() {
+
+            // MDBA vs All records toggle
+            $("[name='mdba-toggle']").bootstrapSwitch({
+                size: "small",
+                onText: "All",
+                onColor: "primary",
+                offText: "MDBA",
+                offColor: "success",
+                onSwitchChange: function(event, state) {
+                    console.log("switch toggled", state);
+                    if (!state) {
+                        // MDBA visible
+                        loadResources("${grailsApplication.config.grails.serverURL}","${grailsApplication.config.biocache.url}","${grailsApplication.config.collections.baseUrl}", 'mdba')
+                    } else {
+                        loadResources("${grailsApplication.config.grails.serverURL}","${grailsApplication.config.biocache.url}","${grailsApplication.config.collections.baseUrl}", 'all')
+                    }
+                }
+            });
         });
     </script>
 </head>
@@ -45,7 +69,7 @@
             <div>
                 <h1>${grailsApplication.config.skin.orgNameLong} <g:message code="public.datasets.title" /></h1>
                 <p style="padding-bottom:6px !important;"><g:message code="public.datasets.header.message01" /> ${grailsApplication.config.projectName}, <g:message code="public.datasets.header.message02" />.</p>
-                <p><g:message code="public.datasets.header.message03" /> <img style="vertical-align:middle;" src="${resource(dir:'/images',file:'ExpandArrow.png')}"/><g:message code="public.datasets.header.message04" />.</p>
+                <p><g:message code="public.datasets.header.message03" /> <img style="vertical-align:middle;" src="${resource(dir:'/images',file:'skin/ExpandArrow.png')}"/><g:message code="public.datasets.header.message04" />.</p>
             </div><!--close hrgroup-->
         </div><!--close section-->
     </div><!--close header-->
@@ -81,11 +105,16 @@
                         </div>
                     </div>
                     <div class="pull-right">
-                        <a href="#" id="downloadLink" class="btn"
-                           title="Download metadata for datasets as a CSV file">
-                            <i class="icon-download"></i>
-                            <g:message code="public.datasets.downloadlink.label" /></a>
+                        <div class="activeFilters">
+                            All / MDBA datasets <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${ defaultSource == 'mdba' ? '':'checked'}/>
+                        </div>
                     </div>
+                    %{--<div class="pull-right">--}%
+                        %{--<a href="#" id="downloadLink" class="btn"--}%
+                           %{--title="Download metadata for datasets as a CSV file">--}%
+                            %{--<i class="icon-download"></i>--}%
+                            %{--<g:message code="public.datasets.downloadlink.label" /></a>--}%
+                    %{--</div>--}%
                 </div>
                 <hr/>
                 <div id="searchControls">
