@@ -46,4 +46,5 @@
 }
 .nav-list>.active>div, .nav-list>.active>div:hover, .nav-list>.active>div:focus {
     background-color: #009080;
+    color: white;
 }
