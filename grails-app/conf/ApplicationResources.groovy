@@ -6,7 +6,7 @@ modules = {
     // Define your skin module here - it must 'dependsOn' either bootstrap (ALA version) or bootstrap2 (unmodified) and core
 
     mdba {
-        dependsOn 'bootstrap2', 'biocacheHubCore','font-awesome'
+        dependsOn 'bootstrap2', 'biocacheHubCore','font-awesome', 'bootstrapSwitch'
         resource url: [dir:'css', file:'Common_fonts.css']
         resource url: [dir:'css', file:'mdba-styles.css']
         resource url: [dir: 'css', file: 'hidden-elements.css']
@@ -20,6 +20,10 @@ modules = {
         resource url: [dir:'css', file:'bootstrapAdditions.css', plugin: 'biocache-hubs'],attrs: [ media: 'all' ]
         resource url: [dir:'js', file:'jquery.autocomplete.js', plugin:'biocache-hubs'], disposition: 'head'
         resource url: [dir:'js', file:'html5.js', plugin:'biocache-hubs'], wrapper: { s -> "<!--[if lt IE 9]>$s<![endif]-->" }, disposition: 'head'
+    }
+
+    jquery_i18n_hubcore {
+        resource url: [dir:'js', file:'jquery.i18n.properties-1.0.9.js', plugin:'biocache-hubs']
     }
 
     collectory {
