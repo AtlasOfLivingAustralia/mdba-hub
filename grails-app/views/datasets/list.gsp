@@ -67,7 +67,7 @@
                 <div class="message">${flash.message}</div>
             </g:if>
             <div>
-                <h1>${grailsApplication.config.skin.orgNameLong} <g:message code="public.datasets.title" /></h1>
+                <h1><g:message code="public.datasets.title" /></h1>
                 <p style="padding-bottom:6px !important;"><g:message code="public.datasets.header.message01" /> ${grailsApplication.config.projectName}, <g:message code="public.datasets.header.message02" />.</p>
                 <p><g:message code="public.datasets.header.message03" /> <img style="vertical-align:middle;" src="${resource(dir:'/images',file:'skin/ExpandArrow.png')}"/><g:message code="public.datasets.header.message04" />.</p>
             </div><!--close hrgroup-->

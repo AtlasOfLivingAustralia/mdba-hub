@@ -256,37 +256,38 @@ a.colour-by-legend-toggle {
 
     //var mbAttr = 'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, imagery &copy; <a href="http://cartodb.com/attributions">CartoDB</a>';
 	//var mbUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
-    var defaultBaseLayer = L.tileLayer("${grailsApplication.config.map.minimal.url}", {
-            attribution: "${raw(grailsApplication.config.map.minimal.attr)}",
-            subdomains: "${grailsApplication.config.map.minimal.subdomains}",
-            mapid: "${grailsApplication.config.map.mapbox?.id?:''}",
-            token: "${grailsApplication.config.map.mapbox?.token?:''}"
-        });
+	function initVariables(){
+        defaultBaseLayer = L.tileLayer("${grailsApplication.config.map.minimal.url}", {
+                attribution: "${raw(grailsApplication.config.map.minimal.attr)}",
+                subdomains: "${grailsApplication.config.map.minimal.subdomains}",
+                mapid: "${grailsApplication.config.map.mapbox?.id?:''}",
+                token: "${grailsApplication.config.map.mapbox?.token?:''}"
+            });
 
-    var MAP_VAR = {
-        map : null,
-        mappingUrl : "${mappingUrl}",
-        query : "${(raw(searchString.replaceAll('"','%22')))}",
-        queryDisplayString : "${queryDisplayString}",
-        center: [-23.6,133.6],
-        defaultLatitude : "${grailsApplication.config.map.defaultLatitude?:'-23.6'}",
-        defaultLongitude : "${grailsApplication.config.map.defaultLongitude?:'133.6'}",
-        defaultZoom : "${grailsApplication.config.map.defaultZoom?:'4'}",
-        overlays : {
+        MAP_VAR = {
+            map : null,
+            mappingUrl : "${mappingUrl}",
+            query : "${(raw(searchString.replaceAll('"','%22')))}",
+            queryDisplayString : "${queryDisplayString}",
+            center: [-23.6,133.6],
+            defaultLatitude : "${grailsApplication.config.map.defaultLatitude?:'-23.6'}",
+            defaultLongitude : "${grailsApplication.config.map.defaultLongitude?:'133.6'}",
+            defaultZoom : "${grailsApplication.config.map.defaultZoom?:'4'}",
+            overlays : {
 
-            <g:if test="${grailsApplication.config.map.overlay.url}">
-                //example WMS layer
-                "${grailsApplication.config.map.overlay.name?:'overlay'}" : L.tileLayer.wms("${grailsApplication.config.map.overlay.url}", {
-                    layers: "${grailsApplication.config.map.overlay.layer?:'ALA:ucstodas'}",
-                    viewparams: "${grailsApplication.config.map.overlay.viewparams?:''}",
-                    format: 'image/png',
-                    transparent: true,
-                    styles: 'polygon',
-                    transparent: true,
-                    opacity: "${grailsApplication.config.map.overlay.opacity?:'1.0'}",
-                    attribution: "${grailsApplication.config.map.overlay.name?:'overlay'}"
-                })
-            </g:if>
+        <g:if test="${grailsApplication.config.map.overlay.url}">
+            //example WMS layer
+            "${grailsApplication.config.map.overlay.name?:'overlay'}" : L.tileLayer.wms("${grailsApplication.config.map.overlay.url}", {
+                        layers: "${grailsApplication.config.map.overlay.layer?:'ALA:ucstodas'}",
+                        viewparams: "${grailsApplication.config.map.overlay.viewparams?:''}",
+                        format: 'image/png',
+                        transparent: true,
+                        styles: 'polygon',
+                        transparent: true,
+                        opacity: "${grailsApplication.config.map.overlay.opacity?:'1.0'}",
+                        attribution: "${grailsApplication.config.map.overlay.name?:'overlay'}"
+                    })
+        </g:if>
 
         },
         baseLayers : {
@@ -297,49 +298,52 @@ a.colour-by-legend-toggle {
         },
         layerControl : null,
         currentLayers : ["${grailsApplication.config.map.overlay?.name}"],
-        additionalFqs : '',
-        zoomOutsideScopedRegion: ${(grailsApplication.config.map.zoomOutsideScopedRegion == false || grailsApplication.config.map.zoomOutsideScopedRegion == "false") ? false : true},
-        removeFqs: ''
-    };
+            additionalFqs : '',
+            zoomOutsideScopedRegion: ${(grailsApplication.config.map.zoomOutsideScopedRegion == false || grailsApplication.config.map.zoomOutsideScopedRegion == "false") ? false : true},
+            removeFqs: ''
+        };
 
-    var ColourByControl = L.Control.extend({
-        options: {
-            position: 'topright',
-            collapsed: false
-        },
-        onAdd: function (map) {
-            // create the control container with a particular class name
-            var $controlToAdd = $('.colourbyTemplate').clone();
-            var container = L.DomUtil.create('div', 'leaflet-control-layers');
-            var $container = $(container);
-            $container.attr("id","colourByControl");
-            $container.attr('aria-haspopup', true);
-            $container.html($controlToAdd.html());
-            return container;
-        }
-    });
+        ColourByControl = L.Control.extend({
+            options: {
+                position: 'topright',
+                collapsed: false
+            },
+            onAdd: function (map) {
+                // create the control container with a particular class name
+                var $controlToAdd = $('.colourbyTemplate').clone();
+                var container = L.DomUtil.create('div', 'leaflet-control-layers');
+                var $container = $(container);
+                $container.attr("id","colourByControl");
+                $container.attr('aria-haspopup', true);
+                $container.html($controlToAdd.html());
+                return container;
+            }
+        });
 
-    var RecordLayerControl = L.Control.extend({
-        options: {
-            position: 'topright',
-            collapsed: false
-        },
-        onAdd: function (map) {
-            // create the control container with a particular class name
-            var container = L.DomUtil.create('div', 'leaflet-control-layers');
-            var $container = $(container);
-            $container.attr("id","recordLayerControl");
-            $('#mapLayerControls').prependTo($container);
-            // Fix for Firefox select bug
-            var stop = L.DomEvent.stopPropagation;
-            L.DomEvent
-                .on(container, 'click', stop)
-                .on(container, 'mousedown', stop);
-            return container;
-        }
-    });
+        RecordLayerControl = L.Control.extend({
+            options: {
+                position: 'topright',
+                collapsed: false
+            },
+            onAdd: function (map) {
+                // create the control container with a particular class name
+                var container = L.DomUtil.create('div', 'leaflet-control-layers');
+                var $container = $(container);
+                $container.attr("id","recordLayerControl");
+                $('#mapLayerControls').prependTo($container);
+                // Fix for Firefox select bug
+                var stop = L.DomEvent.stopPropagation;
+                L.DomEvent
+                    .on(container, 'click', stop)
+                    .on(container, 'mousedown', stop);
+                return container;
+            }
+        });
+	}
+
 
     function initialiseMap(){
+        initVariables()
         //console.log("initialiseMap", MAP_VAR.map);
         if(MAP_VAR.map != null){
             return;
