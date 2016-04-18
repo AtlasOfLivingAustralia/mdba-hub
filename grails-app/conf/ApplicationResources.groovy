@@ -12,6 +12,15 @@ modules = {
         resource url: [dir: 'css', file: 'hidden-elements.css']
     }
 
+    wmd {
+        resource url: 'vendor/wmd/wmd.css'
+        resource url: 'vendor/wmd/showdown.js'
+        resource url: 'vendor/wmd/wmd.js'
+        resource url: 'vendor/wmd/wmd-buttons.png'
+        resource url: 'css/wmd-editor.css'
+    }
+
+
     biocacheHubCore {
         //dependsOn 'bootstrap'
         defaultBundle 'core'
