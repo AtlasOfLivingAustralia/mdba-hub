@@ -207,7 +207,7 @@
                     <div class="activeFilters">
                         Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(grailsApplication.config.mdba.mdbaDataHubFilter) }) ? '':'checked'}/>
                     </div>
-                    <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_resource_uid') } -->
+                    <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_hub_uid') } -->
                     <!-- sr.activeFacetMap = ${sr.activeFacetMap} || fqs = ${fqs} || mdbaRegionCode = ${mdbaRegionCode} -->
                     <!-- sr.urlParameters = ${raw(sr.urlParameters)}  -->
                     <g:if test="${sr.activeFacetMap?.size() > 0 || params.wkt || params.radius}">

@@ -275,19 +275,23 @@ a.colour-by-legend-toggle {
             defaultZoom : "${grailsApplication.config.map.defaultZoom?:'4'}",
             overlays : {
 
-        <g:if test="${grailsApplication.config.map.overlay.url}">
+            <g:each in="${grailsApplication.config.map.overlays}" var="it" status="index">
             //example WMS layer
-            "${grailsApplication.config.map.overlay.name?:'overlay'}" : L.tileLayer.wms("${grailsApplication.config.map.overlay.url}", {
-                        layers: "${grailsApplication.config.map.overlay.layer?:'ALA:ucstodas'}",
-                        viewparams: "${grailsApplication.config.map.overlay.viewparams?:''}",
+            "${it.name?:'overlay'}" : L.tileLayer.wms("${it.url}", {
+                        layers: "${it.layer?:'ALA:ucstodas'}",
+                        viewparams: "${it.viewparams?:''}",
                         format: 'image/png',
                         transparent: true,
                         styles: 'polygon',
                         transparent: true,
-                        opacity: "${grailsApplication.config.map.overlay.opacity?:'1.0'}",
-                        attribution: "${grailsApplication.config.map.overlay.name?:'overlay'}"
+                        opacity: "${it.opacity?:'1.0'}",
+                        attribution: "${it.name?:'overlay'}",
+                        show: ${it.show?:"false"}
                     })
-        </g:if>
+                <g:if test="${index + 1 < grailsApplication.config.map.overlays.size()}">
+                    ,
+                </g:if>
+            </g:each>
 
         },
         baseLayers : {
@@ -367,7 +371,10 @@ a.colour-by-legend-toggle {
         MAP_VAR.map.addLayer(MAP_VAR.drawnItems);
 
         $.each(MAP_VAR.overlays, function(i, el) {
+
+        if(el.options.show){
             MAP_VAR.map.addLayer(el);
+        }
         });
 
         // Initialise the draw control and pass it the FeatureGroup of editable layers

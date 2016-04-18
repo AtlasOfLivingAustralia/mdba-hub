@@ -48,6 +48,35 @@ map.overlay.opacity = "0.5"
 map.defaultFacetMapColourBy = "grid"
 map.densityCountThreshold = 10000
 
+map.overlays = [
+        [
+                name: "Murray-Darling Basin",
+                url: "http://spatial.ala.org.au/geoserver/ALA/wms",
+                layer: "ALA:Objects",
+                viewparams: "s:6239153",
+                opacity: "0.5",
+                show:true
+        ],[
+            name: "Murray-Darling Basin Sustainable Rivers Audit (SRA) Valleys",
+            url: "http://spatial.ala.org.au/geoserver/gwc/service/wms",
+            layer: "ALA:MDB_SRA_valleys",
+            viewparams: "",
+            opacity: "0.5"
+        ],[
+            name: "Murray-Darling Basin Sustainable Rivers Audit (SRA) Zones",
+            url: "http://spatial.ala.org.au/geoserver/gwc/service/wms",
+            layer: "ALA:MDB_SRA_zones",
+            viewparams: "",
+            opacity: "0.5"
+        ],[
+            name: "Murray-Darling Basin Authority Water Quality Zones",
+            url: "http://spatial.ala.org.au/geoserver/gwc/service/wms",
+            layer: "ALA:MDB_water_quality_zones",
+            viewparams: "",
+            opacity: "0.5"
+        ]
+]
+
 // set temporary data hub context  **** remove before compiling to production ***
 biocache.url = 'http://biocache.ala.org.au'
 biocache.queryContext='cl2110:\"Murray-Darling Basin Boundary\"'
