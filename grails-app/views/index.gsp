@@ -4,12 +4,15 @@
 <head>
     <meta name="layout" content="${grailsApplication.config.skin.layout}"/>
     <title>${grailsApplication.config.skin.orgNameLong}</title>
+
     <r:script>
         $(document).ready(function(){
             $(".homePageNav button").click(function(e) {
                 e.preventDefault();
                 var url = $(this).data("href");
                 window.location = url;
+                $('#loading-spinner').show();
+                $('.homePageNav button').hide();
             });
         });
     </r:script>
@@ -41,6 +44,11 @@
         </form>
     </div><!-- end .span12 -->
 </div><!-- end .row-fluid -->
+
+<div id="loading-spinner" class="row-fluid text-center">
+    <h2 class="text-primary"><i class="fa fa-spinner fa-spin"></i> <b>Loading...</b></h2>
+</div>
+
 <div class="${fluidLayout?'row-fluid':'row'}">
     <g:render template="/homeActionButton" model="[label:'Species', browseBy: true, href: g.createLink(controller:'browseBy', action:'species')]"/>
     <g:render template="/homeActionButton" model="[label:'Catchment', browseBy: true, href:grailsApplication.config.mdba.regions]"/>

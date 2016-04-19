@@ -10,7 +10,9 @@ modules = {
         resource url: [dir:'css', file:'Common_fonts.css']
         resource url: [dir:'css', file:'mdba-styles.css']
         resource url: [dir: 'css', file: 'hidden-elements.css']
+        resource url: [dir: 'css', file: 'common.css']
     }
+
 
     wmd {
         resource url: 'vendor/wmd/wmd.css'
@@ -128,4 +130,5 @@ modules = {
         resource url: [dir:'js', file:'document.js']
         resource url: [dir:'css', file:'resources.css']
     }
+
 }
