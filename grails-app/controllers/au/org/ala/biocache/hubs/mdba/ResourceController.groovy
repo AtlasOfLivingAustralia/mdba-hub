@@ -23,10 +23,16 @@ class ResourceController {
 
     def list() {
         Map searchParams = [role:MDA_DOCUMENT_ROLE]
-
         Map result = ecodataResourceService.search(searchParams)
-        Boolean isAdmin = authService.userInRole(ADMIN_ROLE) || authService.userInRole(CASRoles.ROLE_ADMIN)
-        [documents:modelAsJavascript(result.documents), admin:isAdmin]
+        [documents:modelAsJavascript(result.documents), admin:isUserAdmin()]
+    }
+
+    /**
+     * Check user is an admin
+     * @return user admin status
+     */
+    boolean isUserAdmin(){
+        authService.userInRole(ADMIN_ROLE) || authService.userInRole(CASRoles.ROLE_ADMIN)
     }
 
     String modelAsJavascript(def model) {
@@ -104,5 +110,4 @@ class ResourceController {
         def result = ecodataResourceService.delete(id)
         render status: result.statusCode
     }
-
 }

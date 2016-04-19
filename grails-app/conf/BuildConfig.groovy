@@ -48,6 +48,7 @@ grails.project.dependency.resolution = {
     plugins {
         build ":release:3.1.1"
         build ":tomcat:7.0.54"
+        compile ":markdown:1.1.1"
         compile ":ala-auth:1.3.2-SNAPSHOT"
         compile ':cache:1.1.1'
         compile ":cache-headers:1.1.6"

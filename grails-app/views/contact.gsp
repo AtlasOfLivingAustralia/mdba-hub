@@ -15,15 +15,7 @@
     </div>
 </content>
 <div class="staticContent">
-    <h2>Contact us</h2>
-    <h4>General enquiries</h4>
-    <b>Phone:</b> 02 6279 0100<br>
-    <b>Fax:</b> 02 6248 8053<br>
-    <b>Address:</b> Level 4, 51 Allara St, Canberra City, ACT 2601<br>
-    <b>Postal Address:</b> GPO Box 1801, Canberra City 2601<br>
-    <br>
-    <h4>Community Questions</h4>
-    <b>Phone:</b> 1800 230 067
+    <g:render template="/shared/staticPage" model='[name: "${au.org.ala.biocache.hubs.mdba.SettingPageType.CONTACT}", path: "/contact"]'/>
 </div>
 </body>
 </html>
