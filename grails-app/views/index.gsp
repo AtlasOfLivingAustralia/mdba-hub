@@ -7,13 +7,20 @@
 
     <r:script>
         $(document).ready(function(){
-            $(".homePageNav button").click(function(e) {
+            $(".homePageNav button").click(function (e) {
                 e.preventDefault();
-                var url = $(this).data("href");
-                window.location = url;
+                window.location = $(this).data("href");
+                loading();
+            });
+
+            $("form").submit(function () {
+                loading();
+            });
+
+            function loading() {
                 $('#loading-spinner').show();
                 $('.homePageNav button').hide();
-            });
+            }
         });
     </r:script>
 </head>
@@ -39,7 +46,7 @@
             <div class="input-append pull-right">
                 <input type="hidden" name="fq" value="${grailsApplication.config.mdba.mdbaDataHubFilter}">
                 <input class="input span2" placeholder="Quick search" name="q" type="text">
-                <button class="btn btn-primary" type="submit">Go!</button>
+                <button class="btn btn-primary search-btn" type="submit">Go!</button>
             </div>
         </form>
     </div><!-- end .span12 -->
