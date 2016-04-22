@@ -32,7 +32,7 @@
     <title><g:message code="list.title" default="Search"/>: ${sr?.queryTitle?.replaceAll("<(.|\n)*?>", '')} | <alatag:message code="search.heading.list" default="Search results"/> | ${grailsApplication.config.skin.orgNameLong}</title>
     %{--<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>--}%
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <r:require modules="leaflet, search, slider, qtip, nanoscroller, amplify, moment, mapCommon, bootstrapSwitch, jquery_i18n_hubcore"/>
+    <r:require modules="leaflet, search, slider, qtip, nanoscroller, amplify, moment, mapCommon, bootstrapSwitch, jquery_i18n"/>
     <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
         <r:require module="bieAutocomplete"/>
     </g:if>
@@ -55,7 +55,7 @@
             defaultListView: "${grailsApplication.config.defaultListView}",
             resourceName: "${grailsApplication.config.skin.orgNameLong}",
             facetLimit: "${grailsApplication.config.facets.limit?:50}",
-            queryContext: "${grailsApplication.config.biocache.queryContext}",
+            queryContext: "${URLEncoder.encode(grailsApplication.config.biocache.queryContext, "UTF-8")}",
             selectedDataResource: "${selectedDataResource}",
             autocompleteHints: ${grailsApplication.config.bie?.autocompleteHints?.encodeAsJson()?:'{}'},
             zoomOutsideScopedRegion: Boolean("${grailsApplication.config.map.zoomOutsideScopedRegion}"),
