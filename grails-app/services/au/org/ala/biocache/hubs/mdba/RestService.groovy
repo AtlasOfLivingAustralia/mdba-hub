@@ -109,8 +109,9 @@ class RestService {
             if (guidsMap.containsKey(item.lsid)) {
                 List data = guidsMap.get(item.lsid)
                 itemMap.commonName = data[1]
-                itemMap.imageUrl = data[0]
                 itemMap.matchedName = data[3]
+                def imageUrl = item.kvpValues?.find{it.key == 'imageUrl'}
+                itemMap.imageUrl = (imageUrl && imageUrl.value) ? imageUrl.value : data[0]
             }
 
             if (group && speciesgroupMap.containsKey(group)) {
@@ -152,7 +153,7 @@ class RestService {
                     map.put(guid, [image, commonName, scientificName, author])
                 }
             }
-            log.debug(map)
+            //log.debug(map)
             map
         } catch(ex) {
             log.error("Unable to obtain species details from BIE - " + ex.getMessage(), ex)
