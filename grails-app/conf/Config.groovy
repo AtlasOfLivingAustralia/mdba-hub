@@ -88,7 +88,7 @@ mdba.mdbaRegionCode = "cl2110"
 
 mdba.mdbaDataCode = "dr2244"
 mdba.mdbaDataHubFilter = "data_hub_uid:dh10"
-mdba.wetlandUrl = "h#rt=RAMSAR+wetland+regions"
+mdba.wetlandUrl = "h#rt=Directory+of+Important+Wetlands"
 specieslist.baseUrl = "http://lists.ala.org.au/ws"
 specieslist.itemsPath = "/speciesListItems/"
 specieslist.uid = "dr2660"
