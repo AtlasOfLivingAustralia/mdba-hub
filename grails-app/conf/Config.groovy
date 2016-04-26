@@ -91,7 +91,7 @@ mdba.mdbaDataHubFilter = "data_hub_uid:dh10"
 mdba.wetlandUrl = "h#rt=Directory+of+Important+Wetlands"
 specieslist.baseUrl = "http://lists.ala.org.au/ws"
 specieslist.itemsPath = "/speciesListItems/"
-specieslist.uid = "dr2660"
+specieslist.uid = "dr4801"
 collectory.resources = "http://collections.ala.org.au/public/resources.json"
 
 upload.extensions.blacklist = ['exe','js','php','asp','aspx','com','bat']
