@@ -10,3 +10,7 @@ ul#searchTabs #t1,ul#searchTabs #t3,ul#searchTabs #t4,ul#searchTabs #t5, #simple
 {
     display: none;
 }
+
+#advancedSearchForm > table:nth-child(14) > tbody > tr:nth-child(1) {
+    display: none;
+}
