@@ -62,7 +62,7 @@
     <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:g.createLink(controller: 'datasets', action: 'list')]"/>
 </div><!-- end .row-fluid -->
 <div class="${fluidLayout?'row-fluid':'row'}">
-    <g:render template="/homeActionButton" model="[label:'Traditional Owner Groups',href:'']"/>
+    <g:render template="/homeActionButton" model="[label:'Wetland',browseBy:true, href:grailsApplication.config.mdba.regions + grailsApplication.config.mdba.wetlandUrl]"/>
     <g:render template="/homeActionButton" model="[label:'Basin Champions', href:grailsApplication.config.mdba.basinChampions]"/>
     <g:render template="/homeActionButton" model="[label:'Resources',href:g.createLink(controller: 'resource', action:'list')]"/>
 </div><!-- end .row-fluid -->
