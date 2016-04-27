@@ -36,7 +36,7 @@ var total = 0;
 /* the base url of the home server */
 var baseUrl;
 
-var collectionsUrl
+var collectionsUrl;
 
 /* the base url of the biocache server */
 var biocacheUrl;
@@ -46,9 +46,10 @@ var tooltipOptions = {position:'center right',offset:[-10,5],predelay:130, effec
 
 /** load resources and show first page **/
 function loadResources(serverUrl, biocacheRecordsUrl, externalResourceUrl, source) {
+    status(true);
     baseUrl = serverUrl;
     biocacheUrl = biocacheRecordsUrl;
-    collectionsUrl = externalResourceUrl
+    collectionsUrl = externalResourceUrl;
     $.getJSON(baseUrl + "/datasets/resources?source="+source, function(data) {
         allResources = data;
         // no filtering at this stage
@@ -62,6 +63,7 @@ function loadResources(serverUrl, biocacheRecordsUrl, externalResourceUrl, sourc
         displayPage();
         wireDownloadLink();
         wireSearchLink();
+        status(false);
 
         // set up tooltips
         // - don't do download link because the title changes and the tooltip app does not update
@@ -69,6 +71,19 @@ function loadResources(serverUrl, biocacheRecordsUrl, externalResourceUrl, sourc
         $('div.collectory-content [title][id!="downloadLink"]').tooltip(tooltipOptions);
     });
 }
+
+function status(loading){
+    if(loading){
+        $('#loading').show();
+        $('#results div').remove();
+        $('#navLinks').hide();
+    }
+    else {
+        $('#loading').hide();
+        $('#navLinks').show();
+    }
+};
+
 /*************************************************\
  *  List display
  \*************************************************/
@@ -90,8 +105,6 @@ function displayPage() {
 }
 /** append one resource to the list **/
 function appendResource(value) {
-    // clear the loading sign
-    $('#loading').remove();
 
     // create a container inside results
     var $div = $('<div class="result"></div>');
@@ -219,9 +232,15 @@ function filterList() {
         // do search
         console.log('Doing a search with query: ' + query);
         $.ajax({url: baseUrl + "/datasets/dataSetSearch?q=" + query,
+            beforeSend: function(){
+                status(true);
+            },
             success: function(uids) {
                 applyFilters(uids);
                 $('.collectory-content').css('cursor','default');
+            },
+            complete: function(){
+                status(false);
             }
         });
     }
@@ -287,6 +306,7 @@ function showFilters() {
 }
 /** adds a filter and re-filters list**/
 function addFilter(facet, value, element) {
+
     // hide tooltip
     hideTooltip(element);
 
@@ -298,6 +318,7 @@ function addFilter(facet, value, element) {
     currentFilters.push(filter);
     serialiseFiltersToHash();
     filterList();
+
 }
 /** removes a filter and re-filters list**/
 function removeFilter(facet, value, element) {

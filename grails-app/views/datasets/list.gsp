@@ -46,7 +46,6 @@
                 offText: "MDBA",
                 offColor: "success",
                 onSwitchChange: function(event, state) {
-                    console.log("switch toggled", state);
                     if (!state) {
                         // MDBA visible
                         loadResources("${grailsApplication.config.grails.serverURL}","${grailsApplication.config.biocache.url}","${grailsApplication.config.collections.baseUrl}", 'mdba')
@@ -135,9 +134,10 @@
                 </div><!--drop downs-->
             </div>
 
-            <div id="results">
-                <div id="loading"><g:message code="public.datasets.loading" /> ..</div>
+            <div id="loading" class="row-fluid text-center">
+                <h3 class="text-primary"><i class="fa fa-spinner fa-spin"></i> <b>Loading...</b></h3>
             </div>
+            <div id="results"></div>
 
             <div id="searchNavBar" class="clearfix">
                 <div id="navLinks"></div>
