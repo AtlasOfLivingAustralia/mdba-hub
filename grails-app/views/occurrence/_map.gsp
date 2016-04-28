@@ -1,5 +1,6 @@
 %{--<%@ page contentType="text/html;charset=UTF-8" %>--}%
 <g:set var="densityCountThreshold" value="${grailsApplication.config.map.densityCountThreshold?:10000}"/>
+<g:set var="webServicesService" bean="webServicesService"/>
 <style type="text/css">
 
 #leafletMap {
@@ -275,7 +276,7 @@ a.colour-by-legend-toggle {
             defaultZoom : "${grailsApplication.config.map.defaultZoom?:'4'}",
             overlays : {
 
-            <g:each in="${grailsApplication.config.map.overlays}" var="it" status="index">
+            <g:each in="${webServicesService.getOverlays()}" var="it" status="index">
             //example WMS layer
             "${it.name?:'overlay'}" : L.tileLayer.wms("${it.url}", {
                         layers: "${it.layer?:'ALA:ucstodas'}",
@@ -288,7 +289,7 @@ a.colour-by-legend-toggle {
                         attribution: "${it.name?:'overlay'}",
                         show: ${it.show?:"false"}
                     })
-                <g:if test="${index + 1 < grailsApplication.config.map.overlays.size()}">
+                <g:if test="${index + 1 < webServicesService.getOverlays()?.size()}">
                     ,
                 </g:if>
             </g:each>
