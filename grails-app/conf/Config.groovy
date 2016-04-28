@@ -119,11 +119,10 @@ mdba.mdbaRegionCode = "cl2110"
 
 mdba.mdbaDataCode = "dr2244"
 mdba.mdbaDataHubFilter = "data_hub_uid:dh10"
-mdba.basinChampions = "https://biocollect.ala.org.au/mdba/project/index/4d15b4df-c05b-41bd-ac5b-8a65c9e37d17"
-mdba.regions = "http://mdba-regions.ala.org.au/"
+mdba.wetlandUrl = "h#rt=Directory+of+Important+Wetlands"
 specieslist.baseUrl = "http://lists.ala.org.au/ws"
 specieslist.itemsPath = "/speciesListItems/"
-specieslist.uid = "dr2660"
+specieslist.uid = "dr4801"
 collectory.resources = "http://collections.ala.org.au/public/resources.json"
 
 upload.extensions.blacklist = ['exe','js','php','asp','aspx','com','bat']
