@@ -113,7 +113,7 @@ function appendResource(value) {
     $rowB.append('<span><strong class="resultsLabel">License: </strong>' + (value.licenseType == null ? '' : value.licenseType) + '</span>'); // license type
     $rowB.append('<span><strong class="resultsLabel">License version: </strong>' + (value.licenseVersion == null ? '' : value.licenseVersion) + '</span>'); // license version
     if (value.resourceType == 'records') {
-        $rowB.append('<span class="viewRecords"><a title="' + jQuery.i18n.prop('datasets.js.appendresource03') + '" href="' + biocacheUrl + '/occurrences/search?q=data_resource_uid:' + value.uid + '" target="_blank">View records</a></span>'); // records link
+        $rowB.append('<span class="viewRecords"><a title="' + jQuery.i18n.prop('datasets.js.appendresource03') + '" href="' + biocacheUrl + '/occurrences/search?q=data_resource_uid:' + value.uid + '">View records</a></span>'); // records link
     }
     if (value.resourceType == 'website' && value.websiteUrl) {
         $rowB.append('<span class="viewWebsite"><a title="' + jQuery.i18n.prop('datasets.js.appendresource04') + '" class="external" target="_blank" href="' + value.websiteUrl + '">Website</a></span>'); // website link

@@ -230,7 +230,7 @@ a.colour-by-legend-toggle {
     </table>
 </div>
 
-<div id="leafletMap" class="span12" style="height:600px;"></div>
+<div id="leafletMap" class="span12" style="height:${grailsApplication.config.map.height?:600}px;"></div>
 
 <div id="template" style="display:none">
     <div class="colourbyTemplate">
