@@ -583,7 +583,7 @@ a.colour-by-legend-toggle {
      * A tile layer to map colouring the dots by the selected colour.
      */
     function addQueryLayer(redraw){
-
+        MAP_VAR.map.spin(true);
         $.each(MAP_VAR.currentLayers, function(index, value){
             MAP_VAR.map.removeLayer(MAP_VAR.currentLayers[index]);
             MAP_VAR.layerControl.removeLayer(MAP_VAR.currentLayers[index]);
@@ -622,6 +622,12 @@ a.colour-by-legend-toggle {
             GRIDDETAIL: gridSizeMap[pointSize],
             STYLE: "opacity:"+opacity // for grid data
         });
+
+        layer.on({
+            load: function(){
+                MAP_VAR.map.spin(false);
+            }
+        })
 
         if(redraw){
              if(!colourByFacet){

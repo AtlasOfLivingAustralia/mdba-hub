@@ -19,8 +19,14 @@
 
             function loading() {
                 $('#loading-spinner').show();
-                $('.homePageNav button').hide();
+                setTimeout(loadingOff, 5000);
             }
+
+            function loadingOff() {
+                $('#loading-spinner').hide();
+            }
+
+            loadingOff()
         });
     </r:script>
 </head>
@@ -52,7 +58,7 @@
     </div><!-- end .span12 -->
 </div><!-- end .row-fluid -->
 
-<div id="loading-spinner" class="row-fluid text-center">
+<div id="loading-spinner" class="row-fluid text-center hide">
     <h2 class="text-primary"><i class="fa fa-spinner fa-spin"></i> <b>Loading...</b></h2>
 </div>
 
