@@ -221,4 +221,21 @@ class RestService {
 
         dataResources
     }
+
+    /**
+     * get overlays that should be added to the map
+     * @return
+     */
+    @Cacheable('longTermCache')
+    List getOverlays(){
+        String file = grailsApplication.config.map.overlayFile;
+        // use external file if available
+        File overlays = new File(file)
+        if (!overlays.exists()) {
+            //use default resource
+            return grailsApplication.config.map.overlays
+        }
+
+        JSON.parse(overlays?.text)
+    }
 }
