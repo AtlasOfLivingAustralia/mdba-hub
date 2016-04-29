@@ -77,6 +77,7 @@
                 offColor: "success",
                 onSwitchChange: function(event, state) {
                     console.log("switch toggled", state);
+                    MAP_VAR.map.spin(true);
                     if (!state) {
                         // MDBA visible
                         reloadWithParam('fq', '${grailsApplication.config.mdba.mdbaDataHubFilter?:""}');
