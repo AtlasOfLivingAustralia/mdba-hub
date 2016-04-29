@@ -1,3 +1,7 @@
 #loading-spinner {
     display:none;
 }
+
+#colourBySelect{
+    width:250px;
+}
