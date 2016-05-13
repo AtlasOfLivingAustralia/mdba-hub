@@ -20,8 +20,17 @@ import org.codehaus.groovy.grails.web.json.JSONArray
 import org.codehaus.groovy.grails.web.json.JSONElement
 import org.springframework.web.util.UriUtils
 
+import javax.annotation.PostConstruct
+
 class RestService {
     def grailsApplication, facetsCacheService, webServicesService
+
+    String COLLECTIONS_BASE_URL
+
+    @PostConstruct
+    init(){
+        COLLECTIONS_BASE_URL = grailsApplication.config.collections.baseUrl
+    }
 
     @Cacheable('longTermCache')
     Map getFacetNames(String facet) {
@@ -238,4 +247,23 @@ class RestService {
 
         JSON.parse(overlays?.text)
     }
+
+    Map getDataResource(String id){
+        Map resource
+        resource = webServicesService.getJsonElements("${COLLECTIONS_BASE_URL}/ws/dataResource/${id}");
+        String contractsUrl = "${COLLECTIONS_BASE_URL}/ws/dataResource/${id}/contact.json"
+        List contacts = webServicesService.getJsonElements(contractsUrl);
+        resource.put('contacts',contacts)
+        return resource
+    }
+
+    Map getInstitution(String id){
+        Map resource
+        resource = webServicesService.getJsonElements("${COLLECTIONS_BASE_URL}/ws/institution/${id}");
+        String contractsUrl = "${COLLECTIONS_BASE_URL}/ws/institution/${id}/contact.json"
+        List contacts = webServicesService.getJsonElements(contractsUrl);
+        resource.put('contacts',contacts)
+        return resource
+    }
+
 }

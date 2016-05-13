@@ -117,7 +117,7 @@ function appendResource(value) {
 
     // row A
     $rowA.append('<img title="'+ jQuery.i18n.prop('datasets.js.appendresource01') + '" src="' + baseUrl + '/images/skin/ExpandArrow.png"/>');  // twisty
-    $rowA.append('<span class="result-name"><a title="' + jQuery.i18n.prop('datasets.js.appendresource02') + '" href="' + collectionsUrl + '/public/showDataResource/' + value.uid + '" target="_blank">' + value.name + '</a></span>'); // name
+    $rowA.append('<span class="result-name"><a title="' + jQuery.i18n.prop('datasets.js.appendresource02') + '" href="' + collectionsUrl + '/datasets/showDataResource/' + value.uid + '">' + value.name + '</a></span>'); // name
     $rowA.find('a').tooltip(tooltipOptions);
     $rowA.find('img').tooltip($.extend({},tooltipOptions,{position:'center left'}));
 
