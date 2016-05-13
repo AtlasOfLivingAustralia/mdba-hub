@@ -165,7 +165,7 @@
                             <g:set var="count" value="0"/>
                             <g:each var="group" in="${groupedFacets}">
                                 <g:if test="${defaultFacets.find { key, value -> group.value.any { it == key} }}">
-                                    <div class="facetsColumn">
+                                    <div class="${group.key!='mdba'?'facetsColumn':''}">
                                         <div class="facetGroupName"><g:message code="facet.group.${group.key}" default="${group.key}"/></div>
                                         <g:each in="${group.value}" var="facetFromGroup">
                                             <g:if test="${defaultFacets.containsKey(facetFromGroup)}">

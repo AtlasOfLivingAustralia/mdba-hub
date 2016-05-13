@@ -1,6 +1,7 @@
 package au.org.ala.biocache.hubs.mdba
 
 import grails.converters.JSON
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 import java.text.SimpleDateFormat
 
@@ -395,6 +396,34 @@ class MDBATagLib {
         }
         else {
             out << 'institution'
+        }
+    }
+
+    /**
+     * Show map of records based on UID
+     *
+     * - content is loaded directly by constructing the image url
+     *
+     * @attr uid of the instance
+     */
+    def recordsMapDirect = { attrs ->
+        if (attrs.uid) {
+            def urlBase = grailsApplication.config.biocacheServicesUrl + "/density/"
+            def query = "?q=" + fieldNameForSearch(attrs.uid) + ":" + attrs.uid
+            out <<
+                    "<div class='recordsMap'>" +
+                    " <img id='recordsMap' class='no-radius' src='${urlBase}map${query}' width='340' />" +
+                    " <img id='mapLegend' src='${urlBase}legend${query}' width='128' />" +
+                    "</div>" +
+                    "<div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>Learn more about Atlas maps</a>&nbsp;</span></div>"
+        }
+        else {
+            out <<
+                    "<div class='recordsMap'>" +
+                    " <img id='recordsMap' class='no-radius' src='${resource(dir:'images/map',file:'mapping-data-not-available.png')}' width='340' />" +
+                    " <img id='mapLegend' src='${resource(dir:'images/ala', file:'legend-not-available.png')}' width='128' />" +
+                    "</div>" +
+                    "<div class='learnMaps'><span class='asterisk-container'><a href='${ConfigurationHolder.config.ala.baseURL}/faq/species-data/errors-in-maps/'>Learn more about Atlas maps</a>&nbsp;</span></div>"
         }
     }
 }
