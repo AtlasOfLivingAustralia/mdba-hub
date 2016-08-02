@@ -50,7 +50,7 @@
     <div class="span12" id="quickSearchBox">
         <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
             <div class="input-append pull-right">
-                <input type="hidden" name="fq" value="${grailsApplication.config.mdba.mdbaDataHubFilter}">
+                <input type="hidden" name="fq" value="${grailsApplication.config.hub.queryContext}">
                 <input class="input span2" placeholder="Quick search" name="q" type="text">
                 <button class="btn btn-primary search-btn" type="submit">Go!</button>
             </div>
@@ -65,7 +65,7 @@
 <div class="${fluidLayout?'row-fluid':'row'}">
     <g:render template="/homeActionButton" model="[label:'Species', browseBy: true, href: g.createLink(controller:'browseBy', action:'species')]"/>
     <g:render template="/homeActionButton" model="[label:'Catchment', browseBy: true, href:grailsApplication.config.mdba.regions]"/>
-    <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:g.createLink(controller: 'datasets', action: 'list')]"/>
+    <g:render template="/homeActionButton" model="[label:'Dataset', browseBy: true, href:g.createLink(controller: 'collectory', action: 'list')]"/>
 </div><!-- end .row-fluid -->
 <div class="${fluidLayout?'row-fluid':'row'}">
     <g:render template="/homeActionButton" model="[label:'Wetland',browseBy:true, href:grailsApplication.config.mdba.regions + grailsApplication.config.mdba.wetlandUrl]"/>

@@ -1,6 +1,6 @@
 package au.org.ala.biocache.hubs.mdba
 
-class CollectoryService {
+class CollectoryServiceService {
     def isAddressEmpty(address) {
         if(address){
             return [address.street, address.postBox, address.city, address.state, address.postcode, address.country].every {!it}

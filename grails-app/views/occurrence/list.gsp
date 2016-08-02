@@ -80,7 +80,7 @@
                     MAP_VAR.map.spin(true);
                     if (!state) {
                         // MDBA visible
-                        reloadWithParam('fq', '${grailsApplication.config.mdba.mdbaDataHubFilter?:""}');
+                        reloadWithParam('fq', '${grailsApplication.config.hub.queryContext?:""}');
                     } else {
                         removeFilter($('a').data('facet','data_hub_uid'));
                     }
@@ -99,7 +99,7 @@
             <form action="${g.createLink(controller: 'occurrences', action: 'search')}" id="solrSearchForm" class="">
                 <div id="advancedSearchLink"><a href="${g.createLink(uri: '/search')}#tab_advanceSearch"><g:message code="list.advancedsearchlink.navigator" default="Advanced search"/></a></div>
                 <div class="input-append">
-                    <input type="hidden" name="fq" value="${grailsApplication.config.mdba.mdbaDataHubFilter}">
+                    <input type="hidden" name="fq" value="${grailsApplication.config.hub.queryContext}">
                     <input type="text" id="taxaQuery" name="${searchQuery}" class="input-xlarge" value="${params.list(searchQuery).join(' OR ')}">
                     <button type="submit" id="solrSubmit" class="btn"><g:message code="list.advancedsearchlink.button.label" default="Quick search"/></button>
                 </div>
@@ -137,7 +137,7 @@
             %{-- Include toggle for all/mdba records for when no results are found after clicking this toggle --}%
             <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
             <div class="activeFilters">
-                Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(grailsApplication.config.mdba.mdbaDataHubFilter) }) ? '':'checked'}/>
+                Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" ${(fqs.findAll { it.contains(grailsApplication.config.hub.queryContext) }) ? '':'checked'}/>
             </div>
         </div>
     </g:elseif>
@@ -206,7 +206,7 @@
                     %{--<g:set var="hasFq" value="${false}"/>--}%
                     <g:set var="fqs" value="${searchRequestParams.fq as List}"/>
                     <div class="activeFilters">
-                        Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(grailsApplication.config.mdba.mdbaDataHubFilter) }) ? '':'checked'}/>
+                        Toggle: All / MDBA records <input type="checkbox" name="mdba-toggle" id="mdba-toggle" ${(fqs.find { it.contains(grailsApplication.config.hub.queryContext) }) ? '':'checked'}/>
                     </div>
                     <!-- ${sr.activeFacetMap.remove(mdbaRegionCode)} ${sr.activeFacetMap.remove('data_hub_uid') } -->
                     <!-- sr.activeFacetMap = ${sr.activeFacetMap} || fqs = ${fqs} || mdbaRegionCode = ${mdbaRegionCode} -->

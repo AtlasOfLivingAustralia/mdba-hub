@@ -179,7 +179,7 @@ class RestService {
                 url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?q=${URIUtil.encodeWithinQuery(grailsApplication.config.biocache.queryContext)}&facets=data_resource_uid&flimit=1000000"
                 break;
             case 'mdba':
-                url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?q=${URIUtil.encodeWithinQuery(grailsApplication.config.mdba.mdbaDataHubFilter)}&facets=data_resource_uid&flimit=1000000"
+                url = "${grailsApplication.config.biocache.baseUrl}/occurrences/search?q=${URIUtil.encodeWithinQuery(grailsApplication.config.hub.queryContext)}&facets=data_resource_uid&flimit=1000000"
                 break;
         }
 

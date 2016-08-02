@@ -59,10 +59,15 @@ biocache.queryContext='cl2110:\"Murray-Darling Basin Boundary\"'
 bieService.baseUrl = "http://bie.ala.org.au/ws"
 mdba.mdbaRegionCode = "cl2110"
 
-mdba.mdbaDataCode = "dr2244"
-mdba.mdbaDataHubFilter = "data_hub_uid:dh10"
-mdba.wetlandUrl = "#rt=Directory+of+Important+Wetlands"
-mdba.planAreas = "#rt=Murray-Darling+basin+surface+water+plan+areas"
+hub.queryContext="data_hub_uid:dh10"
+if(!mdba.wetlandUrl){
+    mdba.wetlandUrl = "#rt=Directory+of+Important+Wetlands"
+}
+
+if(!mdba.planAreas){
+    mdba.planAreas = "#rt=Traditional+Owner+surface+water"
+}
+
 specieslist.baseUrl = "http://lists.ala.org.au/ws"
 specieslist.itemsPath = "/speciesListItems/"
 specieslist.uid = "dr4801"
@@ -217,3 +222,5 @@ log4j = {
             'au.org.ala.biocache.hubs',
             'au.org.ala.biocache.hubs.OccurrenceTagLib'
 }
+
+bs.version="bs2"

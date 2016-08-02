@@ -8,7 +8,7 @@ grails.project.source.level = 1.6
 grails.server.port.http = 8088
 //grails.project.plugins.dir="plugins"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-//grails.plugin.location.'biocache-hubs' = "../biocache-hubs"
+//grails.plugin.location.'collectory-hub' = "../collectory-hub"
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -50,15 +50,21 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.54"
         compile ":markdown:1.1.1"
         compile ":ala-auth:1.3.2-SNAPSHOT"
-        compile ':cache:1.1.1'
-        compile ":cache-headers:1.1.6"
+        compile ':cache:1.1.8'
         compile ":document-preview-plugin:0.1-SNAPSHOT"
         compile ":ala-ws-plugin:1.0"
-        runtime ":resources:1.2.14"
-        runtime ":cached-resources:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
         runtime (":biocache-hubs:0.75") {
             excludes "release"
+        }
+        runtime ':collectory-hub:1.1'
+
+        runtime ':resources:1.2.14'
+        if (Environment.current == Environment.PRODUCTION) {
+            runtime ":zipped-resources:1.0.1"
+            runtime ":cached-resources:1.1"
+            compile ":cache-headers:1.1.7"
+            runtime ":yui-minify-resources:0.1.5"
         }
     }
 }
