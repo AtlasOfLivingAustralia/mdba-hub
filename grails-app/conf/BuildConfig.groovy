@@ -54,11 +54,12 @@ grails.project.dependency.resolution = {
         compile ":document-preview-plugin:0.2"
         compile ":ala-ws-plugin:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
-        runtime ':jquery:1.11.1'
         runtime (":biocache-hubs:0.75") {
-            excludes "release"
+            excludes "release", "jquery"
         }
-        runtime ':collectory-hub:1.1'
+        runtime (':collectory-hub:1.1.1') {
+            excludes 'jquery'
+        }
 
         runtime ':resources:1.2.14'
         if (Environment.current == Environment.PRODUCTION) {

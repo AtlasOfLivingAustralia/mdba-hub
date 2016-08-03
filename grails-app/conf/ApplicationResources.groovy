@@ -1,8 +1,11 @@
 modules = {
     // Define your skin module here - it must 'dependsOn' either bootstrap (ALA version) or bootstrap2 (unmodified) and core
+    jquery {
+        resource url: 'vendor/jquery/jquery-1.8.0.min.js', disposition: 'head'
+    }
 
     mdba {
-        dependsOn 'bootstrap2', 'biocacheHubCore','font-awesome', 'bootstrapSwitch'
+        dependsOn 'bootstrap2', 'biocacheHubCore','font-awesome', 'bootstrapSwitch', 'jquery'
         resource url: "css/Common_fonts.css"
         resource url: "css/mdba-styles.css"
         resource url: "css/hidden-elements.css"
@@ -21,7 +24,7 @@ modules = {
 
     biocacheHubCore {
         //dependsOn 'bootstrap'
-        defaultBundle 'core'
+        dependsOn 'jquery'
         resource url: [dir:'css', file:'autocomplete.css', plugin:'biocache-hubs']
         resource url: [dir:'css', file:'base.css', plugin: 'biocache-hubs'],attrs: [ media: 'all' ]
         resource url: [dir:'css', file:'bootstrapAdditions.css', plugin: 'biocache-hubs'],attrs: [ media: 'all' ]
@@ -78,5 +81,4 @@ modules = {
         resource url: 'js/document.js'
         resource url: 'css/resources.css'
     }
-
 }
