@@ -49,12 +49,12 @@ grails.project.dependency.resolution = {
         build ":release:3.1.1"
         build ":tomcat:7.0.54"
         compile ":markdown:1.1.1"
-        compile ":ala-auth:1.3.2"
+        compile ":ala-auth:1.3.4"
         compile ':cache:1.1.8'
         compile ":document-preview-plugin:0.2"
         compile ":ala-ws-plugin:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
-        runtime (":biocache-hubs:1.1") {
+        runtime (":biocache-hubs:1.2-SNAPSHOT") {
             excludes "release", "jquery"
         }
         runtime (':collectory-hub:1.1.1') {
