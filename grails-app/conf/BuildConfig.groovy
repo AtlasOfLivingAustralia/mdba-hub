@@ -5,11 +5,11 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
-grails.server.port.http = 8088
+grails.server.port.http = 8086
 //grails.project.plugins.dir="plugins"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 //grails.plugin.location.'collectory-hub' = "../collectory-hub"
-
+//grails.plugin.location.'biocache-hub' = "../../biocache-hubs-grails2/biocache-hubs"
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
@@ -54,7 +54,8 @@ grails.project.dependency.resolution = {
         compile ":document-preview-plugin:0.2"
         compile ":ala-ws-plugin:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
-        runtime (":biocache-hubs:0.75") {
+        runtime ":ala-admin-plugin:1.3"
+        runtime (":biocache-hubs:0.75.1-SNAPSHOT") {
             excludes "release", "jquery"
         }
         runtime (':collectory-hub:1.1.1') {
