@@ -6,7 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <alatag:addApplicationMetaTags />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="${request.contextPath}/images/favicons.ico/favicon.ico">
+ %{--   <link rel="shortcut icon" type="image/x-icon" href="${request.contextPath}/images/favicons.ico/favicon.ico">--}%
+    <link rel="shortcut icon" type="image/x-icon" href="${resource(dir:'/images/favicons.ico',file:'favicon.ico')}"/>
 
     <title><g:layoutTitle /></title>
     <r:require modules="mdba" />
