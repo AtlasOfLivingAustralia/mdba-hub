@@ -55,7 +55,7 @@ grails.project.dependency.resolution = {
         compile ":ala-ws-plugin:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
         runtime ":ala-admin-plugin:1.3"
-        runtime (":biocache-hubs:1.4.11-SNAPSHOT") {
+        runtime (":biocache-hubs:1.4.11") {
             excludes "release", "jquery"
         }
 
