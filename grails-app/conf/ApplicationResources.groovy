@@ -12,6 +12,18 @@ modules = {
         resource url: 'css/common.css'
     }
 
+    mdbaCharts {
+        dependsOn 'bootstrapToggle', 'bootstrapMultiselect'
+        resource url: [dir: "js", file: "Chart.min.js", plugin: "ala-charts-plugin"]
+        resource url: [dir: "js", file: "ALAChart.js", plugin: "ala-charts-plugin"]
+        resource url: [dir: "css", file: "ALAChart.css", plugin: "ala-charts-plugin"]
+        resource url: [dir: "js", file: "slider.js", plugin: "ala-charts-plugin"]
+        resource url: [dir: "js", file: "moment.min.js", plugin: "ala-charts-plugin"]
+    }
+
+    bootstrap {
+        dependsOn 'bootstrap2'
+    }
 
     wmd {
         resource url: 'vendor/wmd/wmd.css'
