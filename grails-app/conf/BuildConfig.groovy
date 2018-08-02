@@ -9,7 +9,7 @@ grails.server.port.http = 8086
 //grails.project.plugins.dir="plugins"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 //grails.plugin.location.'collectory-hub' = "../collectory-hub"
-//grails.plugin.location.'biocache-hub' = "../../biocache-hubs-grails2/biocache-hubs"
+//grails.plugin.location.'biocache-hub' = "../../../biocache-hubs-grails2/latest-plugin/biocache-hubs"
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
@@ -55,11 +55,12 @@ grails.project.dependency.resolution = {
         compile ":ala-ws-plugin:1.0"
         runtime ':font-awesome-resources:4.3.0.1'
         runtime ":ala-admin-plugin:1.3"
-        runtime (":biocache-hubs:0.75.1") {
+        runtime (":biocache-hubs:1.4.11-SNAPSHOT") {
             excludes "release", "jquery"
         }
+
         runtime (':collectory-hub:1.1.1') {
-            excludes 'jquery'
+            excludes 'jquery', 'charts'
         }
 
         runtime ':resources:1.2.14'

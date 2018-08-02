@@ -32,10 +32,10 @@
     <title><g:message code="list.title" default="Search"/>: ${sr?.queryTitle?.replaceAll("<(.|\n)*?>", '')} | <alatag:message code="search.heading.list" default="Search results"/> | ${grailsApplication.config.skin.orgNameLong}</title>
     %{--<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>--}%
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <r:require modules="jquery, leaflet, search, slider, qtip, nanoscroller, amplify, moment, mapCommon, bootstrapSwitch, jquery_i18n"/>
-    <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
-        <r:require module="bieAutocomplete"/>
-    </g:if>
+    %{--<script type="text/javascript">
+        var ALA = {};
+    </script>--}%
+
     <script type="text/javascript">
         // single global var for app conf settings
         <g:set var="fqParamsSingleQ" value="${(params.fq) ? ' AND ' + params.list('fq')?.join(' AND ') : ''}"/>
@@ -63,6 +63,12 @@
             locale: "${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}"
         };
 
+    </script>
+    <r:require modules="jquery, leaflet, leafletPlugins, mdbaCharts, search, slider, qtip, nanoscroller, amplify, moment, mapCommon, bootstrapSwitch, jquery_i18n"/>
+    <g:if test="${grailsApplication.config.skin.useAlaBie?.toBoolean()}">
+        <r:require module="bieAutocomplete"/>
+    </g:if>
+    <script type="text/javascript">
         google.load('maps','3.5',{ other_params: "sensor=false" });
         google.load("visualization", "1", {packages:["corechart"]});
 
@@ -88,6 +94,7 @@
             });
         });
     </script>
+
 </head>
 
 <body class="occurrence-search">
@@ -304,7 +311,13 @@
                     <ul class="nav nav-tabs" data-tabs="tabs">
                         <li class="active"><a id="t1" href="#recordsView" data-toggle="tab"><g:message code="list.link.t1" default="Records"/></a></li>
                         <li><a id="t2" href="#mapView" data-toggle="tab"><g:message code="list.link.t2" default="Map"/></a></li>
-                        <li><a id="t3" href="#chartsView" data-toggle="tab"><g:message code="list.link.t3" default="Charts"/></a></li>
+                       %{-- <li><a id="t3" href="#chartsView" data-toggle="tab"><g:message code="list.link.t3" default="Charts"/></a></li>--}%
+                        <plugin:isAvailable name="alaChartsPlugin">
+                            <li><a id="t3" href="#chartsView" data-toggle="tab"><g:message code="list.link.t3" default="Charts"/></a></li>
+                            <g:if test="${grailsApplication.config.userCharts && grailsApplication.config.userCharts.toBoolean()}">
+                                <li><a id="t6" href="#userChartsView" data-toggle="tab"><g:message code="list.link.t6" default="Custom Charts"/></a></li>
+                            </g:if>
+                        </plugin:isAvailable>
                         <g:if test="${showSpeciesImages}">
                             <li><a id="t4" href="#speciesImages" data-toggle="tab"><g:message code="list.link.t4" default="Species images"/></a></li>
                         </g:if>
@@ -382,12 +395,24 @@
                         />
                         <div id='envLegend'></div>
                     </div><!-- end #mapwrapper -->
-                    <div id="chartsView" class="tab-pane">
+                   %{-- <div id="chartsView" class="tab-pane">
                         <style type="text/css">
                            #charts div { display: inline-flex; }
                         </style>
                         <div id="charts" class="row-fluid"></div>
-                    </div><!-- end #chartsWrapper -->
+                    </div>--}%<!-- end #chartsWrapper -->
+                    <plugin:isAvailable name="alaChartsPlugin">
+                        <div id="chartsView" class="tab-pane">
+                            <g:render template="charts"
+                                      model="[searchString: searchString]" plugin="biocache-hubs"/>
+                        </div><!-- end #chartsWrapper -->
+                        <g:if test="${grailsApplication.config.userCharts && grailsApplication.config.userCharts?.toBoolean()}">
+                            <div id="userChartsView" class="tab-pane">
+                                <g:render template="userCharts"
+                                          model="[searchString: searchString]" plugin="biocache-hubs"/>
+                            </div><!-- end #chartsWrapper -->
+                        </g:if>
+                    </plugin:isAvailable>
                     <g:if test="${showSpeciesImages}">
                         <div id="speciesImages" class="tab-pane">
                             <h3><g:message code="list.speciesimages.title" default="Representative images of species"/></h3>
