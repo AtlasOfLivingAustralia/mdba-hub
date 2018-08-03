@@ -32,9 +32,6 @@
     <title><g:message code="list.title" default="Search"/>: ${sr?.queryTitle?.replaceAll("<(.|\n)*?>", '')} | <alatag:message code="search.heading.list" default="Search results"/> | ${grailsApplication.config.skin.orgNameLong}</title>
     %{--<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>--}%
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    %{--<script type="text/javascript">
-        var ALA = {};
-    </script>--}%
 
     <script type="text/javascript">
         // single global var for app conf settings
@@ -47,20 +44,36 @@
             searchString: "${(searchString.replaceAll('"','%22'))}", // 5 JSTL var can contain double quotes //  encodeAsXML(), encodeAsURL(), encodeAsHTML(), encodeAsJs()
             facetQueries: "${fqParams.encodeAsURL()}",
             facetDownloadQuery: "${(searchString.replaceAll('"','%22'))}${fqParamsSingleQ}",
+            maxFacets: "${grailsApplication.config.facets?.max?:'4'}",
             queryString: "${queryDisplay.encodeAsJavaScript()}",
             bieWebappUrl: "${grailsApplication.config.bie.baseUrl}",
+            bieWebServiceUrl: "${grailsApplication.config.bieService.baseUrl}",
             biocacheServiceUrl: "${alatag.getBiocacheAjaxUrl()}",
             collectoryUrl: "${grailsApplication.config.collectory.baseUrl}",
+            alertsUrl: "${grailsApplication.config.alerts.baseUrl}",
             skin: "${grailsApplication.config.skin.layout}",
             defaultListView: "${grailsApplication.config.defaultListView}",
             resourceName: "${grailsApplication.config.skin.orgNameLong}",
             facetLimit: "${grailsApplication.config.facets.limit?:50}",
-            queryContext: "${URLEncoder.encode(grailsApplication.config.biocache.queryContext, "UTF-8")}",
+            queryContext: "${grailsApplication.config.biocache.queryContext}",
             selectedDataResource: "${selectedDataResource}",
-            autocompleteHints: ${grailsApplication.config.bie?.autocompleteHints?.encodeAsJson()?:'{}'},
+            autocompleteHints: '{${raw(grailsApplication.config.bie?.autocompleteHints)}}',
             zoomOutsideScopedRegion: Boolean("${grailsApplication.config.map.zoomOutsideScopedRegion}"),
             hasMultimedia: ${hasImages?:'false'}, // will be either true or false
-            locale: "${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}"
+            locale: "${org.springframework.web.servlet.support.RequestContextUtils.getLocale(request)}",
+            imageServiceBaseUrl:"${grailsApplication.config.images.baseUrl}",
+            likeUrl: "${createLink(controller: 'imageClient', action: 'likeImage')}",
+            dislikeUrl: "${createLink(controller: 'imageClient', action: 'dislikeImage')}",
+            userRatingUrl: "${createLink(controller: 'imageClient', action: 'userRating')}",
+            disableLikeDislikeButton: true,
+            addLikeDislikeButton: ${(grailsApplication.config.addLikeDislikeButton == false) ? false : true},
+            addPreferenceButton: ${imageClient.checkAllowableEditRole()},
+            userRatingHelpText: '<div><b>Up vote (<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>) an image:</b>'+
+            ' Image supports the identification of the species or is representative of the species.  Subject is clearly visible including identifying features.<br/><br/>'+
+            '<b>Down vote (<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>) an image:</b>'+
+            ' Image does not support the identification of the species, subject is unclear and identifying features are difficult to see or not visible.<br/></div>',
+            savePreferredSpeciesListUrl: "${createLink(controller: 'imageClient', action: 'saveImageToSpeciesList')}",
+            getPreferredSpeciesListUrl:  "${createLink(controller: 'imageClient', action: 'getPreferredSpeciesImageList')}"
         };
 
     </script>
