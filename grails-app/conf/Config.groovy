@@ -40,7 +40,7 @@ skin.footerUrl = "classpath:resources/generic-footer.jsp" // can be external URL
 skin.fluidLayout = false // true or false
 chartsBgColour = "#FFFFFF"
 // 3rd part WMS layer to show on maps
-map.overlay.url = "http://spatial.ala.org.au/geoserver/ALA/wms"
+map.overlay.url = "https://spatial.ala.org.au/geoserver/ALA/wms"
 map.overlay.name = "Murray-Darling Basin"
 map.overlay.layer = "ALA:Objects"
 map.overlay.viewparams = "s:6239153" //cl2110
@@ -51,12 +51,12 @@ map.overlayFile="/data/${appName}/config/overlays.json"
 map.overlays = []
 
 // set temporary data hub context  **** remove before compiling to production ***
-biocache.url = 'http://biocache.ala.org.au'
+biocache.url = 'https://biocache.ala.org.au'
 biocache.queryContext='cl2110:\"Murray-Darling Basin Boundary\"'
 //biocache.groupedFacetsUrl = "file:///data/mdba-hub/config/grouped_facets_mdba.json"
 //biocache.queryContext="cl1059:%22DARLING+RIVER%22"
 //biocache.queryContext="data_resource_uid:dr2244
-bieService.baseUrl = "http://bie.ala.org.au/ws"
+bieService.baseUrl = "https://bie-ws.ala.org.au/ws"
 mdba.mdbaRegionCode = "cl2110"
 
 hub.queryContext="data_hub_uid:dh10"
@@ -68,10 +68,10 @@ if(!mdba.planAreas){
     mdba.planAreas = "#rt=Traditional+Owner+surface+water"
 }
 
-specieslist.baseUrl = "http://lists.ala.org.au/ws"
+specieslist.baseUrl = "https://lists.ala.org.au/ws"
 specieslist.itemsPath = "/speciesListItems/"
 specieslist.uid = "dr4801"
-collectory.resources = "http://collections.ala.org.au/public/resources.json"
+collectory.resources = "https://collections.ala.org.au/public/resources.json"
 
 upload.extensions.blacklist = ['exe','js','php','asp','aspx','com','bat']
 webservice.apiKeyHeader='Authorization' // Required for calls to ecodata
